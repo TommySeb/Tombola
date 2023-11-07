@@ -124,10 +124,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Classi\ClsCartella.cs" />
-    <Compile Include="Classi\ClsEstrazione.cs" />
-    <Compile Include="Classi\ClsGiocatore.cs" />
-    <Compile Include="Classi\ClsPartita.cs" />
+    <Compile Include="Classi\Cartella\ClsCartellaDB.cs" />
+    <Compile Include="Classi\Estrazione\ClsEstrazioneDB.cs" />
+    <Compile Include="Classi\Giocatore\ClsGiocatoreDB.cs" />
+    <Compile Include="Classi\Partita\ClsPartitaDB.cs" />
+    <Compile Include="Classi\Cartella\ClsCartellaBL.cs" />
+    <Compile Include="Classi\Estrazione\ClsEstrazioneBL.cs" />
+    <Compile Include="Classi\Giocatore\ClsGiocatoreBL.cs" />
+    <Compile Include="Classi\Partita\ClsPartitaBL.cs" />
     <Compile Include="Lib\DBManager.cs" />
     <Compile Include="Form\FrmRegistrazione.cs">
       <SubType>Form</SubType>

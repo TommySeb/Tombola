@@ -6,8 +6,15 @@ using System.Threading.Tasks;
 
 namespace EsLab0._1_Tombola_Sebastianelli_Tomas
 {
-    class ClsEstrazione
+    class ClsEstrazioneDB
     {
+        #region Costruttore
+        public ClsEstrazioneDB()
+        {
+
+        }
+        #endregion
+
         #region Attributi
         long _id;
         long _idPartita;
@@ -58,13 +65,6 @@ namespace EsLab0._1_Tombola_Sebastianelli_Tomas
                 else
                     throw new Exception("Un numero estratto deve essere comrpeso tra 1 e 99");
             }
-        }
-        #endregion
-
-        #region Costruttore
-        public ClsEstrazione()
-        {
-
         }
         #endregion
     }

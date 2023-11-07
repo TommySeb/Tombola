@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace EsLab0._1_Tombola_Sebastianelli_Tomas
 {
-    class ClsPartita
+    class ClsPartitaDB
     {
         #region Attributi
         long _id;
@@ -126,7 +126,7 @@ namespace EsLab0._1_Tombola_Sebastianelli_Tomas
         #endregion
 
         #region Costruttore
-        public ClsPartita()
+        public ClsPartitaDB()
         {
 
         }

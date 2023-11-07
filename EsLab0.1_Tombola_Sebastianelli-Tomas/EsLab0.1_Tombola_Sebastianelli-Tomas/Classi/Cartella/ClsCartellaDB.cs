@@ -1,13 +1,16 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace EsLab0._1_Tombola_Sebastianelli_Tomas
 {
-    class ClsCartella
+    class ClsCartellaDB
     {
+        #region Costruttore
+        public ClsCartellaDB()
+        {
+
+        }
+        #endregion
+
         #region Attributi
         long _id;
 
@@ -302,13 +305,6 @@ namespace EsLab0._1_Tombola_Sebastianelli_Tomas
         public bool TredicesimoNumeroEstratto { get => _tredicesimoNumeroEstratto; set => _tredicesimoNumeroEstratto = value; }
         public bool QuattordicesimoNumeroEstratto { get => _quattordicesimoNumeroEstratto; set => _quattordicesimoNumeroEstratto = value; }
         public bool QuindicesimoNumeroEstratto { get => _quindicesimoNumeroEstratto; set => _quindicesimoNumeroEstratto = value; }
-        #endregion
-
-        #region Costruttore
-        public ClsCartella()
-        {
-
-        }
         #endregion
     }
 }

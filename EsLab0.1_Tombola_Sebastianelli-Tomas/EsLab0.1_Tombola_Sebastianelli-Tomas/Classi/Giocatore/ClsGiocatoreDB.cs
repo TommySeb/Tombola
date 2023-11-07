@@ -1,13 +1,17 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace EsLab0._1_Tombola_Sebastianelli_Tomas
 {
-    class ClsGiocatore
+    class ClsGiocatoreDB
     {
+        #region Costruttore
+        public ClsGiocatoreDB(MySql.Data.MySqlClient.dataset)
+        {
+            
+        }
+        #endregion
+
         #region Attributi
         string _email;
         string _password;
@@ -113,13 +117,6 @@ namespace EsLab0._1_Tombola_Sebastianelli_Tomas
                 else
                     throw new Exception("Il nickname del giocatore non può essere vuoto");
             }
-        }
-        #endregion
-
-        #region Costruttore
-        public ClsGiocatore()
-        {
-
         }
         #endregion
     }
