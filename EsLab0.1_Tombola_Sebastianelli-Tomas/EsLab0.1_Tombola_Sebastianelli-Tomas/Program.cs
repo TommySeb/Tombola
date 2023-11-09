@@ -20,6 +20,7 @@ namespace EsLab0._1_Tombola_Sebastianelli_Tomas
         }
 
         #region Variabili pubbliche
+        public static ClsGiocatoreDB _giocatoreLoggato;
         public static List<ClsPartitaDB> _partite = new List<ClsPartitaDB>(0);
         public static List<ClsCartellaDB> _cartelle = new List<ClsCartellaDB>(0);
         #endregion

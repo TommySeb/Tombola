@@ -6,13 +6,14 @@ namespace EsLab0._1_Tombola_Sebastianelli_Tomas
     class ClsGiocatoreDB
     {
         #region Costruttore
-        public ClsGiocatoreDB(MySql.Data.MySqlClient.dataset)
+        public ClsGiocatoreDB(System.Data.DataSet datasetOttenuto)
         {
-            
+            // 
         }
         #endregion
 
         #region Attributi
+        long _id;
         string _email;
         string _password;
         string _nome;
@@ -40,7 +41,7 @@ namespace EsLab0._1_Tombola_Sebastianelli_Tomas
                     _email = _tmp;
                 }
                 else
-                    throw new Exception("Il formato dell'e-mail non è corretto.")
+                    throw new Exception("Il formato dell'e-mail non è corretto.");
             }
         }
 
@@ -116,6 +117,51 @@ namespace EsLab0._1_Tombola_Sebastianelli_Tomas
                     _nickname = value.Trim();
                 else
                     throw new Exception("Il nickname del giocatore non può essere vuoto");
+            }
+        }
+        
+        public DateTime DataDiNascita
+        {
+            get
+            {
+                return _dataDiNascita;
+            }
+            set
+            {
+                if (value < DateTime.Now)
+                    _dataDiNascita = value;
+                else
+                    throw new Exception("La data di nascita non può essere futura.");
+            }
+        }
+
+        public Char Genere
+        {
+            get
+            {
+                return _genere;
+            }
+            set
+            {
+                if (value == 'M' || value == 'F' || value == 'A')
+                    _genere = value;
+                else
+                    throw new Exception("Il genere speciifcato non è corretto. Specificarne uno valido e riprovare.");
+            }
+        }
+
+        public Decimal Portafoglio
+        {
+            get
+            {
+                return _portafoglio;
+            }
+            set
+            {
+                if (_portafoglio + value >= 0)
+                    _portafoglio += value;
+                else
+                    throw new Exception("L'importo del portafoglio non può essere negativo.");
             }
         }
         #endregion

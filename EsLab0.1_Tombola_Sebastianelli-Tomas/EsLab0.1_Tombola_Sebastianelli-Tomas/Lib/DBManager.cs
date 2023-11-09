@@ -52,6 +52,9 @@ namespace EsLab0._1_Tombola_Sebastianelli_Tomas
                 throw new ArgumentException("Argomento mancante");
 
             _stringaConnessione = $"server={server};port={port};user={username};password={password};database={database};";
+
+            // Barbatrucco
+            conn = new MySqlConnection("server=localhost;user=root;database=tombola;port=3306;password=root");
         }
 
         #endregion

@@ -23,17 +23,24 @@ namespace EsLab0._1_Tombola_Sebastianelli_Tomas
         #region Eventi
         private void btAccedi_Click(object sender, EventArgs e)
         {
-            // Variabile usata in caso di errore
-            string _errore = String.Empty;
-
             // Memorizzo le credenziali inserite dall'utente
             MySqlParameter[] parametriLogin = new MySqlParameter[2];
             parametriLogin[0] = new MySqlParameter("@EMAIL", tbEmail.Text);
             parametriLogin[1] = new MySqlParameter("@PASSWORD", tbPassword.Text);
 
             // Effettuo la query al DB
-            DBManager dBManager = new DBManager("tombola", "localhost", "root", "root", "8081");
-            DataSet _utente = dBManager.GetDataSetByQuery("SELECT * FROM giocatori WHERE email = @EMAIL AND password = @PASSWORD;", parametriLogin, "giocatori", ref _errore);
+            MySqlConnection _connessione = new MySqlConnection("server=localhost;user=root;database=tombola;port=3306;password=root");
+            string _query = "SELECT * FROM giocatori WHERE email = @EMAIL AND password = @PASSWORD";
+            _connessione.Open();
+
+            DataSet _utente = new DataSet();
+            MySqlDataAdapter _dataAdapter = new MySqlDataAdapter(_query, _connessione);
+            _dataAdapter.Fill(_utente, "giocatori");
+
+            _connessione.Close();
+
+            DataSet tmp = _utente;
+
             
 
             FrmHomepage frmHomepage = new FrmHomepage();
