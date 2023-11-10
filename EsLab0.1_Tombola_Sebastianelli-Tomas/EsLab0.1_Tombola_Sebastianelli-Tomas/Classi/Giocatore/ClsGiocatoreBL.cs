@@ -23,7 +23,13 @@ namespace EsLab0._1_Tombola_Sebastianelli_Tomas
         #endregion
 
         #region Metodi
-        public bool EsisteUtente(string email, string password)
+        /// <summary>
+        /// Verifica che un giocatore esista dal DB a partire da username e password
+        /// </summary>
+        /// <param name="email">E-mail del giocatore</param>
+        /// <param name="password">Password del giocatore</param>
+        /// <returns></returns>
+        public bool EsisteGiocatore(string email, string password)
         {
             // Ottengo gli utenti con le credenziali specificate dal DB
             string _query = "SELECT * FROM giocatori WHERE email = @EMAIL and password = @PASSWORD";
@@ -66,6 +72,43 @@ namespace EsLab0._1_Tombola_Sebastianelli_Tomas
                 throw new Exception(_errore);
         }
         
+        /// <summary>
+        /// Registra un utente
+        /// </summary>
+        /// <param name="giocatore">Giocatore da registrare</param>
+        /// <param name="errore">Variabile nella quale memorizzare eventuali errori</param>
+        /// <returns>Esito della registrazione</returns>
+        public int Registra(ClsGiocatoreDB giocatore, ref string errore)
+        {
+            // Esito dell'operazione
+            int esito = 0;
+
+            try
+            {
+                // Effettuo la query di inserimento sul DB
+                // TODO: Implementare crittografia
+                string sql = "INSERT INTO giocatori (nome, cognome, nickname, data_nascita, genere, email, password, portafoglio) VALUES (@nome, @cognome, @nickname, @data_nascita, @genere, @email, @password, 0)";
+
+                MySqlParameter[] parametri =
+                {
+                    new MySqlParameter("@nome", giocatore.Nome),
+                    new MySqlParameter("@cognome", giocatore.Cognome),
+                    new MySqlParameter("@nickname", giocatore.Nickname),
+                    new MySqlParameter("@data_nascita", giocatore.DataDiNascita),
+                    new MySqlParameter("@genere", giocatore.Genere),
+                    new MySqlParameter("@email", giocatore.Email),
+                    new MySqlParameter("@password", giocatore.Password)
+                };
+
+                esito = _dbManager.GetAffectedRows(sql, parametri, ref errore);
+            }
+            catch (Exception ex)
+            {
+                errore = ex.Message;
+            }
+
+            return esito;
+        }
         #endregion
     }
 }

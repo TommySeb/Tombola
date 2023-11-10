@@ -35,13 +35,13 @@
             this.tbEmail = new System.Windows.Forms.TextBox();
             this.cbGenere = new System.Windows.Forms.ComboBox();
             this.label7 = new System.Windows.Forms.Label();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.dtpDataDiNascita = new System.Windows.Forms.DateTimePicker();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.tbNickname = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.tbCognome = new System.Windows.Forms.TextBox();
-            this.btAccedi = new System.Windows.Forms.Button();
+            this.btRegistrati = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.tbPassword = new System.Windows.Forms.MaskedTextBox();
@@ -58,13 +58,13 @@
             this.panel1.Controls.Add(this.tbEmail);
             this.panel1.Controls.Add(this.cbGenere);
             this.panel1.Controls.Add(this.label7);
-            this.panel1.Controls.Add(this.dateTimePicker1);
+            this.panel1.Controls.Add(this.dtpDataDiNascita);
             this.panel1.Controls.Add(this.label6);
             this.panel1.Controls.Add(this.label5);
             this.panel1.Controls.Add(this.tbNickname);
             this.panel1.Controls.Add(this.label4);
             this.panel1.Controls.Add(this.tbCognome);
-            this.panel1.Controls.Add(this.btAccedi);
+            this.panel1.Controls.Add(this.btRegistrati);
             this.panel1.Controls.Add(this.label3);
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.tbPassword);
@@ -90,7 +90,7 @@
             this.tbConfermaPassword.Name = "tbConfermaPassword";
             this.tbConfermaPassword.PasswordChar = '•';
             this.tbConfermaPassword.Size = new System.Drawing.Size(208, 20);
-            this.tbConfermaPassword.TabIndex = 16;
+            this.tbConfermaPassword.TabIndex = 8;
             // 
             // label8
             // 
@@ -106,7 +106,7 @@
             this.tbEmail.Location = new System.Drawing.Point(19, 283);
             this.tbEmail.Name = "tbEmail";
             this.tbEmail.Size = new System.Drawing.Size(208, 20);
-            this.tbEmail.TabIndex = 14;
+            this.tbEmail.TabIndex = 6;
             // 
             // cbGenere
             // 
@@ -118,7 +118,7 @@
             this.cbGenere.Location = new System.Drawing.Point(19, 243);
             this.cbGenere.Name = "cbGenere";
             this.cbGenere.Size = new System.Drawing.Size(208, 21);
-            this.cbGenere.TabIndex = 13;
+            this.cbGenere.TabIndex = 5;
             // 
             // label7
             // 
@@ -129,12 +129,12 @@
             this.label7.TabIndex = 12;
             this.label7.Text = "Genere:";
             // 
-            // dateTimePicker1
+            // dtpDataDiNascita
             // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(19, 204);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(208, 20);
-            this.dateTimePicker1.TabIndex = 11;
+            this.dtpDataDiNascita.Location = new System.Drawing.Point(19, 204);
+            this.dtpDataDiNascita.Name = "dtpDataDiNascita";
+            this.dtpDataDiNascita.Size = new System.Drawing.Size(208, 20);
+            this.dtpDataDiNascita.TabIndex = 4;
             // 
             // label6
             // 
@@ -159,7 +159,7 @@
             this.tbNickname.Location = new System.Drawing.Point(19, 165);
             this.tbNickname.Name = "tbNickname";
             this.tbNickname.Size = new System.Drawing.Size(208, 20);
-            this.tbNickname.TabIndex = 8;
+            this.tbNickname.TabIndex = 3;
             // 
             // label4
             // 
@@ -175,19 +175,20 @@
             this.tbCognome.Location = new System.Drawing.Point(19, 126);
             this.tbCognome.Name = "tbCognome";
             this.tbCognome.Size = new System.Drawing.Size(208, 20);
-            this.tbCognome.TabIndex = 6;
+            this.tbCognome.TabIndex = 2;
             // 
-            // btAccedi
+            // btRegistrati
             // 
-            this.btAccedi.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(46)))), ((int)(((byte)(91)))));
-            this.btAccedi.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btAccedi.ForeColor = System.Drawing.Color.White;
-            this.btAccedi.Location = new System.Drawing.Point(19, 386);
-            this.btAccedi.Name = "btAccedi";
-            this.btAccedi.Size = new System.Drawing.Size(208, 33);
-            this.btAccedi.TabIndex = 5;
-            this.btAccedi.Text = "Registrati";
-            this.btAccedi.UseVisualStyleBackColor = false;
+            this.btRegistrati.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(46)))), ((int)(((byte)(91)))));
+            this.btRegistrati.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btRegistrati.ForeColor = System.Drawing.Color.White;
+            this.btRegistrati.Location = new System.Drawing.Point(19, 386);
+            this.btRegistrati.Name = "btRegistrati";
+            this.btRegistrati.Size = new System.Drawing.Size(208, 33);
+            this.btRegistrati.TabIndex = 9;
+            this.btRegistrati.Text = "Registrati";
+            this.btRegistrati.UseVisualStyleBackColor = false;
+            this.btRegistrati.Click += new System.EventHandler(this.btRegistrati_Click);
             // 
             // label3
             // 
@@ -213,7 +214,7 @@
             this.tbPassword.Name = "tbPassword";
             this.tbPassword.PasswordChar = '•';
             this.tbPassword.Size = new System.Drawing.Size(208, 20);
-            this.tbPassword.TabIndex = 2;
+            this.tbPassword.TabIndex = 7;
             // 
             // tbNome
             // 
@@ -253,7 +254,7 @@
         #endregion
 
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Button btAccedi;
+        private System.Windows.Forms.Button btRegistrati;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.MaskedTextBox tbPassword;
@@ -261,7 +262,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox tbCognome;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.DateTimePicker dtpDataDiNascita;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox tbNickname;

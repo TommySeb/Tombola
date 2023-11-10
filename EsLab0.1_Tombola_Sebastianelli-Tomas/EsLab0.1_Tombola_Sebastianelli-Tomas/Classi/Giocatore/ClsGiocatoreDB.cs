@@ -53,9 +53,9 @@ namespace EsLab0._1_Tombola_Sebastianelli_Tomas
             set
             {
                 if (!String.IsNullOrEmpty(value.Trim()))
-                    _nome = value.Trim();
+                    _password = value.Trim();
                 else
-                    throw new Exception("Il nome del giocatore non può essere vuoto");
+                    throw new Exception("La password del giocatore non può essere vuota");
             }
         }
 

@@ -48,9 +48,9 @@
             this.lblUtente.ForeColor = System.Drawing.Color.White;
             this.lblUtente.Location = new System.Drawing.Point(12, 9);
             this.lblUtente.Name = "lblUtente";
-            this.lblUtente.Size = new System.Drawing.Size(166, 23);
+            this.lblUtente.Size = new System.Drawing.Size(168, 23);
             this.lblUtente.TabIndex = 0;
-            this.lblUtente.Text = "Benvenuto, user";
+            this.lblUtente.Text = "Bentornato, user";
             // 
             // lvPartite
             // 

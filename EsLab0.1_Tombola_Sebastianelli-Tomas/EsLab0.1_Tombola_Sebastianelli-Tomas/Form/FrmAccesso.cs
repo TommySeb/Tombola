@@ -34,7 +34,7 @@ namespace EsLab0._1_Tombola_Sebastianelli_Tomas
 
             try
             {
-                if (clsGiocatoreBL.EsisteUtente(_email, _password))
+                if (clsGiocatoreBL.EsisteGiocatore(_email, _password))
                 {
                     // Ripristino il cursore base
                     this.Cursor = Cursors.Arrow;

@@ -26,7 +26,7 @@ namespace EsLab0._1_Tombola_Sebastianelli_Tomas
             this.Owner.Hide();
 
             // Carica il nome utente
-            lblUtente.Text = Program._giocatoreLoggato.Nome;
+            lblUtente.Text = "Bentornato, " + Program._giocatoreLoggato.Nome;
         }
 
         private void lvPartite_ColumnWidthChanging(object sender, ColumnWidthChangingEventArgs e)
