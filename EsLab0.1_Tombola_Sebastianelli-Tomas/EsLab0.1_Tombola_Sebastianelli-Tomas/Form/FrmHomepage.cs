@@ -24,13 +24,27 @@ namespace EsLab0._1_Tombola_Sebastianelli_Tomas
         {
             // Nascondi la Form di accesso
             this.Owner.Hide();
+
+            // Carica il nome utente
+            lblUtente.Text = Program._giocatoreLoggato.Nome;
         }
 
-        private void listView1_ColumnWidthChanging(object sender, ColumnWidthChangingEventArgs e)
+        private void lvPartite_ColumnWidthChanging(object sender, ColumnWidthChangingEventArgs e)
         {
             Console.Write("Column Resizing");
-            e.NewWidth = this.listView1.Columns[e.ColumnIndex].Width;
+            e.NewWidth = this.lvPartite.Columns[e.ColumnIndex].Width;
             e.Cancel = true;
+        }
+
+        private void FrmHomepage_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            // Conferma di uscita dall'app
+            DialogResult dr = MessageBox.Show("Sei sicuro di voler uscire?", "Conferma uscita", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (dr == DialogResult.Yes)
+                Application.Exit();
+            else
+                e.Cancel = true;
         }
         #endregion
     }

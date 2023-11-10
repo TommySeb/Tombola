@@ -6,9 +6,8 @@ namespace EsLab0._1_Tombola_Sebastianelli_Tomas
     class ClsGiocatoreDB
     {
         #region Costruttore
-        public ClsGiocatoreDB(System.Data.DataSet datasetOttenuto)
+        public ClsGiocatoreDB()
         {
-            // 
         }
         #endregion
 

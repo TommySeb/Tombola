@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.lblUtente = new System.Windows.Forms.Label();
-            this.listView1 = new System.Windows.Forms.ListView();
+            this.lvPartite = new System.Windows.Forms.ListView();
             this.ID = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Nome = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.CostoCartella = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -52,23 +52,23 @@
             this.lblUtente.TabIndex = 0;
             this.lblUtente.Text = "Benvenuto, user";
             // 
-            // listView1
+            // lvPartite
             // 
-            this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.lvPartite.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.ID,
             this.Nome,
             this.CostoCartella});
-            this.listView1.Font = new System.Drawing.Font("Century Gothic", 8.25F);
-            this.listView1.FullRowSelect = true;
-            this.listView1.HideSelection = false;
-            this.listView1.Location = new System.Drawing.Point(17, 83);
-            this.listView1.MultiSelect = false;
-            this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(316, 355);
-            this.listView1.TabIndex = 1;
-            this.listView1.UseCompatibleStateImageBehavior = false;
-            this.listView1.View = System.Windows.Forms.View.Details;
-            this.listView1.ColumnWidthChanging += new System.Windows.Forms.ColumnWidthChangingEventHandler(this.listView1_ColumnWidthChanging);
+            this.lvPartite.Font = new System.Drawing.Font("Century Gothic", 8.25F);
+            this.lvPartite.FullRowSelect = true;
+            this.lvPartite.HideSelection = false;
+            this.lvPartite.Location = new System.Drawing.Point(17, 83);
+            this.lvPartite.MultiSelect = false;
+            this.lvPartite.Name = "lvPartite";
+            this.lvPartite.Size = new System.Drawing.Size(316, 355);
+            this.lvPartite.TabIndex = 1;
+            this.lvPartite.UseCompatibleStateImageBehavior = false;
+            this.lvPartite.View = System.Windows.Forms.View.Details;
+            this.lvPartite.ColumnWidthChanging += new System.Windows.Forms.ColumnWidthChangingEventHandler(this.lvPartite_ColumnWidthChanging);
             // 
             // ID
             // 
@@ -145,11 +145,12 @@
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.listView1);
+            this.Controls.Add(this.lvPartite);
             this.Controls.Add(this.lblUtente);
             this.Name = "FrmHomepage";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Homepage - Tombola";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmHomepage_FormClosing);
             this.Load += new System.EventHandler(this.FrmHomepage_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -159,7 +160,7 @@
         #endregion
 
         private System.Windows.Forms.Label lblUtente;
-        private System.Windows.Forms.ListView listView1;
+        private System.Windows.Forms.ListView lvPartite;
         private System.Windows.Forms.ColumnHeader ID;
         private System.Windows.Forms.ColumnHeader Nome;
         private System.Windows.Forms.ColumnHeader CostoCartella;

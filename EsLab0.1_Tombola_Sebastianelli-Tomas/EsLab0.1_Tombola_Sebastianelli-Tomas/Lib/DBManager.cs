@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Configuration;
-using MySql.Data.MySqlClient;
+using MySqlConnector;
 using System.Data;
 
 namespace EsLab0._1_Tombola_Sebastianelli_Tomas
@@ -24,7 +24,7 @@ namespace EsLab0._1_Tombola_Sebastianelli_Tomas
             get
             {
                 if (String.IsNullOrWhiteSpace(_stringaConnessione))
-                    return ConfigurationManager.ConnectionStrings["biblio"].ConnectionString;
+                    return ConfigurationManager.ConnectionStrings["server"].ConnectionString;
                 else return _stringaConnessione;
             }
         }

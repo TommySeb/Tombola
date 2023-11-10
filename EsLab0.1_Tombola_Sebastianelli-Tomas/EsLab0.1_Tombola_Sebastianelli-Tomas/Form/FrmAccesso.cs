@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using MySql.Data.MySqlClient;
+using MySqlConnector;
 
 namespace EsLab0._1_Tombola_Sebastianelli_Tomas
 {
@@ -23,30 +23,48 @@ namespace EsLab0._1_Tombola_Sebastianelli_Tomas
         #region Eventi
         private void btAccedi_Click(object sender, EventArgs e)
         {
-            // Memorizzo le credenziali inserite dall'utente
-            MySqlParameter[] parametriLogin = new MySqlParameter[2];
-            parametriLogin[0] = new MySqlParameter("@EMAIL", tbEmail.Text);
-            parametriLogin[1] = new MySqlParameter("@PASSWORD", tbPassword.Text);
+            // Imposto il cursore di caricamento
+            this.Cursor = Cursors.WaitCursor;
 
-            // Effettuo la query al DB
-            MySqlConnection _connessione = new MySqlConnection("server=localhost;user=root;database=tombola;port=3306;password=root");
-            string _query = "SELECT * FROM giocatori WHERE email = @EMAIL AND password = @PASSWORD";
-            _connessione.Open();
+            // Verifico se l'utente esiste nel DB e, in caso positivo, lo memorizzo
+            string _email = tbEmail.Text;
+            string _password = tbPassword.Text;
 
-            DataSet _utente = new DataSet();
-            MySqlDataAdapter _dataAdapter = new MySqlDataAdapter(_query, _connessione);
-            _dataAdapter.Fill(_utente, "giocatori");
+            ClsGiocatoreBL clsGiocatoreBL = new ClsGiocatoreBL(Program._dbManager);
 
-            _connessione.Close();
+            try
+            {
+                if (clsGiocatoreBL.EsisteUtente(_email, _password))
+                {
+                    // Ripristino il cursore base
+                    this.Cursor = Cursors.Arrow;
 
-            DataSet tmp = _utente;
+                    FrmHomepage frmHomepage = new FrmHomepage();
+                    frmHomepage.Owner = this;
+                    frmHomepage.Show();
+                }
+                else
+                {
+                    // Ripristino il cursore base
+                    this.Cursor = Cursors.Arrow;
 
+                    throw new Exception("Credenziali di accesso non valide.");
+                }  
+            }
+            catch(Exception ex)
+            {
+                // Ripristino il cursore base
+                this.Cursor = Cursors.Arrow;
+
+
+                MessageBox.Show("Si è verificato un errore: \r\n " + ex.ToString(), "Errore", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
             
 
-            FrmHomepage frmHomepage = new FrmHomepage();
-            frmHomepage.Owner = this;
-            frmHomepage.Show();
+
+            
         }
+
         private void llRegistrati_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             FrmRegistrazione frmRegistrazione = new FrmRegistrazione();
