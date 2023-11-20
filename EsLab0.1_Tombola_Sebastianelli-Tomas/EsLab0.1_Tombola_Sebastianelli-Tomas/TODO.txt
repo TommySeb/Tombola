@@ -1,0 +1,2 @@
+﻿- Terminare ricerca per nome in ClsPartitaBL
+- Spostare metodi accesso e registrazione su ClsUtenteBL
