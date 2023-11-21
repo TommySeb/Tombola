@@ -14,18 +14,24 @@ namespace EsLab0._1_Tombola_Sebastianelli_Tomas
         #endregion
 
         #region Costruttore
-        ClsPartitaBL(DBManager dBManager)
+        public ClsPartitaBL(DBManager dBManager)
         {
             _dbManager = dBManager;
         }
         #endregion
 
         #region Metodi
-        public void OttieniDalDB()
+        /// <summary>
+        /// Ottiene tutte le partite dal DB
+        /// </summary>
+        public void OttieniPartiteDaDB()
         {
             // Dichiarazione variabili necessarie
             System.Data.DataTable _partite;
             string _errore = String.Empty;
+
+            // Elimino tutte le partite presenti nella lista
+            Program._partite.Clear();
 
             // Query al DB
             _partite = _dbManager.GetDataTableByQuery("SELECT * FROM partite", null, ref _errore);
@@ -36,7 +42,7 @@ namespace EsLab0._1_Tombola_Sebastianelli_Tomas
                 for(int i = 0; i < _partite.Rows.Count; i++)
                 {
                     ClsPartitaDB _partita = new ClsPartitaDB();
-                    _partita.Id = (long)_partite.Rows[i]["id"];
+                    _partita.Id = Convert.ToInt32(_partite.Rows[i]["id"]);      // TODO: Usare long
                     _partita.Prezzo = (Decimal)_partite.Rows[i]["prezzo"];
                     _partita.ValoreAmbo = (Decimal)_partite.Rows[i]["valore_ambo"];
                     _partita.ValoreTerna = (Decimal)_partite.Rows[i]["valore_terna"];
@@ -51,16 +57,56 @@ namespace EsLab0._1_Tombola_Sebastianelli_Tomas
                 throw new Exception(_errore);
         }
 
-        public List<ClsPartitaDB> CercaPerNome(string nome)
+        /// <summary>
+        /// Ritorna la posizione di una partita nella lista di partite
+        /// </summary>
+        /// <param name="id">ID della partita da cercare</param>
+        /// <returns></returns>
+        public int CercaPartitaDaID(long id)
         {
-            // Risultato di ricerca
-            List<ClsPartitaDB> _partiteTrovate = new List<ClsPartitaDB>(0);
+            // Aggiorno la lista delle partite in RAM
+            OttieniPartiteDaDB();
 
-            // Query al DB
-            _dbManager.GetDataTableByQuery("SELECT ID ")
+            // Ricerca della posizione della partita nella lista di partite
+            int i = 0;
 
-            // Ritorno il risultato di ricerca
-            return _partiteTrovate;
+            do
+            {
+                i++;
+            } while (Program._partite[i].Id != id && i < Program._partite.Count);
+
+            // Ritorno l'indice della partita
+            return i;
+        }
+
+        /// <summary>
+        /// Ottiene le partite dal DB, effettua una ricerca per nome e restituisce gli indici delle partite trovate
+        /// </summary>
+        /// <param name="nome">Nome della partita da cercare</param>
+        /// <returns></returns>
+        public List<int> CercaPerNome(string nome)
+        {
+            // Dichiarazione variabili necessarie
+            List<int> _idPartiteTrovate = new List<int>(0);
+            string _errore = String.Empty;
+
+            // Aggiorno le partite in RAM
+            OttieniPartiteDaDB();
+
+            // Effettuo la query al DB
+            MySqlConnector.MySqlParameter[] _parametri =
+            {
+                new MySqlConnector.MySqlParameter("NOME", nome)
+            };
+
+            System.Data.DataTable _risultato = _dbManager.GetDataTableByQuery("SELECT ID FROM partite WHERE nome LIKE '%@NOME%'", _parametri, ref _errore);
+
+            // Inserisco gli indici trovati in una lista
+            for(int i = 0; i < _risultato.Rows.Count; i++)
+                _idPartiteTrovate.Add(Convert.ToInt32(_risultato.Rows[i]["id"]));
+
+            // Ritorno i risultati di ricerca
+            return _idPartiteTrovate;
         }
         #endregion
     }

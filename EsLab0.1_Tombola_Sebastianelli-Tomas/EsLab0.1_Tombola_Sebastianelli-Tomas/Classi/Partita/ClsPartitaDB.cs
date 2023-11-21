@@ -10,6 +10,7 @@ namespace EsLab0._1_Tombola_Sebastianelli_Tomas
     {
         #region Attributi
         long _id;
+        string _nome;
         decimal _prezzo = 0;
         decimal _valoreAmbo = 0;
         decimal _valoreTerna = 0;
@@ -31,6 +32,23 @@ namespace EsLab0._1_Tombola_Sebastianelli_Tomas
                     _id = value;
                 else
                     throw new Exception("L'ID di una partita non può essere negativo.");
+            }
+        }
+
+        public string Nome
+        {
+            get
+            {
+                return _nome;
+            }
+            set
+            {
+                // Elaborazione stringa
+                string _tmp = value.Trim();
+
+                // Controllo che la stringa non sia vuota
+                if (!String.IsNullOrEmpty(_tmp))
+                    _nome = _tmp;
             }
         }
 

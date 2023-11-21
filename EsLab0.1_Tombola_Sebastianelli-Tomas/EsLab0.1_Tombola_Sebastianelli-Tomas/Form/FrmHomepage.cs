@@ -12,13 +12,17 @@ namespace EsLab0._1_Tombola_Sebastianelli_Tomas
 {
     public partial class FrmHomepage : Form
     {
+        #region Variabili
+
+        #endregion
+
         #region Costruttore
         public FrmHomepage()
         {
             InitializeComponent();
         }
         #endregion
-
+        ClsPartitaBL _metodiPartita = new ClsPartitaBL(Program._dbManager);
         #region Eventi
         private void FrmHomepage_Load(object sender, EventArgs e)
         {
@@ -27,6 +31,9 @@ namespace EsLab0._1_Tombola_Sebastianelli_Tomas
 
             // Carica il nome utente
             lblUtente.Text = "Bentornato, " + Program._giocatoreLoggato.Nome;
+
+            // Caricamento ListView
+            // TODO
         }
 
         private void lvPartite_ColumnWidthChanging(object sender, ColumnWidthChangingEventArgs e)
@@ -47,5 +54,31 @@ namespace EsLab0._1_Tombola_Sebastianelli_Tomas
                 e.Cancel = true;
         }
         #endregion
+
+        private void btCerca_Click(object sender, EventArgs e)
+        {
+            // Dichiarazione variabili
+            List<int> _idPartiteTrovate;
+
+            // Svuoto la ListView delle partite
+            lvPartite.Items.Clear();
+
+            // Cerco le partite per nome ed ottengo gli indici di quelle trovate
+            _idPartiteTrovate = _metodiPartita.CercaPerNome(tbCerca.Text.Trim());
+
+            // Mostro le partite con l'ID 
+            for(int i = 0; i < _idPartiteTrovate.Count; i++)
+            {
+                // Ottengo la posizione della partita nella lista di partite
+                int _indicePartita = _metodiPartita.CercaPartitaDaID(_idPartiteTrovate[i]);
+
+                // Creo e carico la riga sulla ListView
+                ListViewItem lvi = new ListViewItem(Program._partite[_indicePartita].Id.ToString());
+                lvi.SubItems.Add(Program._partite[_indicePartita].Nome);
+                lvi.SubItems.Add(Program._partite[_indicePartita].Prezzo.ToString());
+
+                lvPartite.Items.Add(lvi);
+            }
+        }
     }
 }
