@@ -12,8 +12,13 @@ namespace EsLab0._1_Tombola_Sebastianelli_Tomas
 {
     public partial class FrmHomepage : Form
     {
-        #region Variabili
+        #region Costanti
+        const string SUGGERIMENTO_TB_RICERCA = "Cerca per nome...";
+        #endregion
 
+        #region Variabili
+        ClsPartitaBL _metodiPartite = new ClsPartitaBL(Program._dbManager);
+        bool _suggerimentoTBRimosso;    // Indica se il suggerimento dalla TextBox di ricerca è stato rimosso
         #endregion
 
         #region Costruttore
@@ -22,7 +27,61 @@ namespace EsLab0._1_Tombola_Sebastianelli_Tomas
             InitializeComponent();
         }
         #endregion
-        ClsPartitaBL _metodiPartita = new ClsPartitaBL(Program._dbManager);
+
+        #region Metodi
+        /// <summary>
+        /// Ottiene le partite dal DB ed aggiorna la relativa ListView
+        /// </summary>
+        private void AggiornaLvPartite()
+        {
+            // Ottengo le partite dal DB
+            _metodiPartite.OttieniPartiteDaDB();
+
+            // Aggiorno la ListView
+            lvPartite.Items.Clear();
+
+            foreach (ClsPartitaDB partita in Program._partite)
+            {
+                ListViewItem lvi = new ListViewItem(partita.Id.ToString());
+                lvi.SubItems.Add(partita.Nome);
+                lvi.SubItems.Add(partita.Prezzo.ToString());
+
+                lvPartite.Items.Add(lvi);
+            }
+        }
+
+        /// <summary>
+        /// Svuota la ListView delle partite e carica quelle passate
+        /// </summary>
+        /// <param name="partiteDaCaricare">Lista di partite da caricare</param>
+        private void CaricaSuListView(List<ClsPartitaDB> partiteDaCaricare)
+        {
+            lvPartite.Items.Clear();
+
+            foreach (ClsPartitaDB partita in partiteDaCaricare)
+            {
+                ListViewItem lvi = new ListViewItem(partita.Id.ToString());
+                lvi.SubItems.Add(partita.Nome);
+                lvi.SubItems.Add(partita.Prezzo.ToString());
+
+                lvPartite.Items.Add(lvi);
+            }
+        }
+
+        /// <summary>
+        /// Ottiene tutte le partite dal DB e le cerca per nome
+        /// </summary>
+        /// <param name="nome"></param>
+        private void CercaPartitaPerNome(string nome)
+        {
+            // Effettuo la ricerca
+            List<ClsPartitaDB> _partiteTrovate = _metodiPartite.CercaPerNome(nome);
+
+            // Mostro il risultato sulla ListView
+            CaricaSuListView(_partiteTrovate);
+        }
+        #endregion
+
         #region Eventi
         private void FrmHomepage_Load(object sender, EventArgs e)
         {
@@ -32,8 +91,8 @@ namespace EsLab0._1_Tombola_Sebastianelli_Tomas
             // Carica il nome utente
             lblUtente.Text = "Bentornato, " + Program._giocatoreLoggato.Nome;
 
-            // Caricamento ListView
-            // TODO
+            // Ottenimento partite ed inserimento su ListView
+            AggiornaLvPartite();
         }
 
         private void lvPartite_ColumnWidthChanging(object sender, ColumnWidthChangingEventArgs e)
@@ -53,32 +112,47 @@ namespace EsLab0._1_Tombola_Sebastianelli_Tomas
             else
                 e.Cancel = true;
         }
-        #endregion
 
         private void btCerca_Click(object sender, EventArgs e)
         {
-            // Dichiarazione variabili
-            List<int> _idPartiteTrovate;
-
-            // Svuoto la ListView delle partite
-            lvPartite.Items.Clear();
-
-            // Cerco le partite per nome ed ottengo gli indici di quelle trovate
-            _idPartiteTrovate = _metodiPartita.CercaPerNome(tbCerca.Text.Trim());
-
-            // Mostro le partite con l'ID 
-            for(int i = 0; i < _idPartiteTrovate.Count; i++)
-            {
-                // Ottengo la posizione della partita nella lista di partite
-                int _indicePartita = _metodiPartita.CercaPartitaDaID(_idPartiteTrovate[i]);
-
-                // Creo e carico la riga sulla ListView
-                ListViewItem lvi = new ListViewItem(Program._partite[_indicePartita].Id.ToString());
-                lvi.SubItems.Add(Program._partite[_indicePartita].Nome);
-                lvi.SubItems.Add(Program._partite[_indicePartita].Prezzo.ToString());
-
-                lvPartite.Items.Add(lvi);
-            }
+            CercaPartitaPerNome(tbCerca.Text);
         }
+
+        private void tbCerca_Click(object sender, EventArgs e)
+        {
+            if (tbCerca.Text == SUGGERIMENTO_TB_RICERCA)
+            {
+                _suggerimentoTBRimosso = true;
+                tbCerca.Text = String.Empty;
+            }
+                
+        }
+
+        private void tbCerca_TextChanged(object sender, EventArgs e)
+        {
+            if (!_suggerimentoTBRimosso)
+            {
+                if (tbCerca.Text == String.Empty)
+                    tbCerca.Text = SUGGERIMENTO_TB_RICERCA;
+            }
+            else
+                _suggerimentoTBRimosso = false;
+        }
+
+        private void btAggiorna_Click(object sender, EventArgs e)
+        {
+            // Ottenimento partite ed inserimento su ListView
+            AggiornaLvPartite();
+        }
+
+        private void btResetRicerca_Click(object sender, EventArgs e)
+        {
+            // Resetto i risultati di ricerca
+            AggiornaLvPartite();
+
+            // Resetto il testo della casella di ricerca
+            tbCerca.Text = SUGGERIMENTO_TB_RICERCA;
+        }
+        #endregion
     }
 }

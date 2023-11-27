@@ -63,6 +63,16 @@ namespace EsLab0._1_Tombola_Sebastianelli_Tomas.Properties {
         /// <summary>
         ///   Cerca una risorsa localizzata di tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Cerca {
+            get {
+                object obj = ResourceManager.GetObject("Cerca", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Cerca una risorsa localizzata di tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Sfondo {
             get {
                 object obj = ResourceManager.GetObject("Sfondo", resourceCulture);

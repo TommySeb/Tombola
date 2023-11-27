@@ -42,7 +42,8 @@ namespace EsLab0._1_Tombola_Sebastianelli_Tomas
                 for(int i = 0; i < _partite.Rows.Count; i++)
                 {
                     ClsPartitaDB _partita = new ClsPartitaDB();
-                    _partita.Id = Convert.ToInt32(_partite.Rows[i]["id"]);      // TODO: Usare long
+                    _partita.Id = Convert.ToInt64(_partite.Rows[i]["id"]);      // TODO: Usare long
+                    _partita.Nome = (string)_partite.Rows[i]["nome"];
                     _partita.Prezzo = (Decimal)_partite.Rows[i]["prezzo"];
                     _partita.ValoreAmbo = (Decimal)_partite.Rows[i]["valore_ambo"];
                     _partita.ValoreTerna = (Decimal)_partite.Rows[i]["valore_terna"];
@@ -80,33 +81,28 @@ namespace EsLab0._1_Tombola_Sebastianelli_Tomas
         }
 
         /// <summary>
-        /// Ottiene le partite dal DB, effettua una ricerca per nome e restituisce gli indici delle partite trovate
+        /// Ottiene le partite dal DB ed effettua una ricerca per nome
         /// </summary>
         /// <param name="nome">Nome della partita da cercare</param>
         /// <returns></returns>
-        public List<int> CercaPerNome(string nome)
+        public List<ClsPartitaDB> CercaPerNome(string nome)
         {
             // Dichiarazione variabili necessarie
-            List<int> _idPartiteTrovate = new List<int>(0);
+            List<ClsPartitaDB> _partiteTrovate = new List<ClsPartitaDB>(0);
             string _errore = String.Empty;
 
             // Aggiorno le partite in RAM
             OttieniPartiteDaDB();
 
-            // Effettuo la query al DB
-            MySqlConnector.MySqlParameter[] _parametri =
+            // Effettuo la ricerca
+            foreach(ClsPartitaDB partita in Program._partite)
             {
-                new MySqlConnector.MySqlParameter("NOME", nome)
-            };
-
-            System.Data.DataTable _risultato = _dbManager.GetDataTableByQuery("SELECT ID FROM partite WHERE nome LIKE '%@NOME%'", _parametri, ref _errore);
-
-            // Inserisco gli indici trovati in una lista
-            for(int i = 0; i < _risultato.Rows.Count; i++)
-                _idPartiteTrovate.Add(Convert.ToInt32(_risultato.Rows[i]["id"]));
+                if (partita.Nome.Contains(nome))
+                    _partiteTrovate.Add(partita);
+            }
 
             // Ritorno i risultati di ricerca
-            return _idPartiteTrovate;
+            return _partiteTrovate;
         }
         #endregion
     }

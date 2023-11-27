@@ -226,6 +226,7 @@
     <None Include="Resources\Sfondo.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\Cerca.png" />
     <Content Include="TODO.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

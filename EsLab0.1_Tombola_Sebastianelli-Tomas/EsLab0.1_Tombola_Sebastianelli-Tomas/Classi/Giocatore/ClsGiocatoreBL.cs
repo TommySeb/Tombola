@@ -51,7 +51,7 @@ namespace EsLab0._1_Tombola_Sebastianelli_Tomas
                 {
                     // In caso positivo lo memorizzo
                     ClsGiocatoreDB _giocatore = new ClsGiocatoreDB();
-                    _giocatore.Id = Convert.ToInt32(_utenteOttenuto.Rows[0]["id"]);
+                    _giocatore.Id = Convert.ToInt64(_utenteOttenuto.Rows[0]["id"]);
                     _giocatore.Nome = _utenteOttenuto.Rows[0]["nome"].ToString();
                     _giocatore.Cognome = _utenteOttenuto.Rows[0]["cognome"].ToString();
                     _giocatore.Nickname = _utenteOttenuto.Rows[0]["nickname"].ToString();
