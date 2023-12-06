@@ -17,8 +17,6 @@ namespace EsLab0._1_Tombola_Sebastianelli_Tomas
         public FrmAccesso()
         {
             InitializeComponent();
-            ClsCartellaBL clsCartellaBL = new ClsCartellaBL(Program._dbManager);
-            clsCartellaBL.OttieniCartelleDaDB();
         }
         #endregion
 
@@ -68,5 +66,14 @@ namespace EsLab0._1_Tombola_Sebastianelli_Tomas
             frmRegistrazione.ShowDialog();
         }
         #endregion
+
+        private void FrmAccesso_Load(object sender, EventArgs e)
+        {
+            // Tmp
+            ClsCartellaBL metodi = new ClsCartellaBL(Program._dbManager);
+            metodi.OttieniCartelleDaDB();
+            UcCartella ucCartella = new UcCartella(1);
+            this.Controls.Add(ucCartella);
+        }
     }
 }

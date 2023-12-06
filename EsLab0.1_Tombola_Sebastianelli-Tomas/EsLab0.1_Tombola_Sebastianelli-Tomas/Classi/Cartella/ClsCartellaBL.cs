@@ -82,6 +82,66 @@ namespace EsLab0._1_Tombola_Sebastianelli_Tomas
         }
 
         /// <summary>
+        /// Cerca una cartella per ID e ritorna il suo indice nella lista (O -1 se non trovata)
+        /// </summary>
+        /// <param name="idDaCercare"></param>
+        /// <returns></returns>
+        public int CercaCartellaPerID(long idDaCercare)
+        {
+            // Dichiarazione variabili necessarie
+            int _indiceCartella = 0;
+
+            // Ricerca della posizione della cartella nella lista di cartelle
+            do
+            {
+                _indiceCartella++;
+            } while (_indiceCartella < Program._cartelle.Count && Program._cartelle[_indiceCartella].Id == idDaCercare);
+
+            // Ritorno l'indice della cartella (O -1 se non ho trovato nulla
+            return _indiceCartella - 1;
+        }
+
+        /// <summary>
+        /// Inserisce i numeri di una cartella in un array
+        /// </summary>
+        /// <param name="id">ID della cartella</param>
+        /// <returns>Array con i numeri della cartella specificata</returns>
+        public int[] OttieniNumeriCartella(long id)
+        {
+            // Cerco la posizione della cartella sulla lista
+            int _indiceCartellaSuLista = CercaCartellaPerID(id);
+
+            // Verifico se la cartella esiste
+            if (_indiceCartellaSuLista != -1)
+            {
+                // Inserisco i numeri della cartella su un array
+                int[] _numeriCartella =
+                {
+                    Program._cartelle[_indiceCartellaSuLista].PrimoNumero,
+                    Program._cartelle[_indiceCartellaSuLista].SecondoNumero,
+                    Program._cartelle[_indiceCartellaSuLista].TerzoNumero,
+                    Program._cartelle[_indiceCartellaSuLista].QuartoNumero,
+                    Program._cartelle[_indiceCartellaSuLista].QuintoNumero,
+                    Program._cartelle[_indiceCartellaSuLista].SestoNumero,
+                    Program._cartelle[_indiceCartellaSuLista].SettimoNumero,
+                    Program._cartelle[_indiceCartellaSuLista].OttavoNumero,
+                    Program._cartelle[_indiceCartellaSuLista].NonoNumero,
+                    Program._cartelle[_indiceCartellaSuLista].DecimoNumero,
+                    Program._cartelle[_indiceCartellaSuLista].UndicesimoNumero,
+                    Program._cartelle[_indiceCartellaSuLista].DodicesimoNumero,
+                    Program._cartelle[_indiceCartellaSuLista].TredicesimoNumero,
+                    Program._cartelle[_indiceCartellaSuLista].QuattordicesimoNumero,
+                    Program._cartelle[_indiceCartellaSuLista].QuindicesimoNumero
+                };
+
+                // Ritorno l'array di numeri
+                return _numeriCartella;
+            }
+            else
+                throw new Exception("La cartella con id " + id + " non esiste.");
+        }
+
+        /// <summary>
         /// Genera una cartella e i suoi 15 numeri, per poi inserirla sul DB
         /// </summary>
         /// <param name="idGiocatore">ID del giocatore che ha richiesto la cartella</param>

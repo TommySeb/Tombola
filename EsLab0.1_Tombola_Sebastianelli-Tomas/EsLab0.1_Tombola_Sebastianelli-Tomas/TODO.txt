@@ -2,3 +2,4 @@
 - Spostare metodi accesso e registrazione su ClsUtenteBL
 - L'algoritmo di generazione delle cartelle, in ClsCartellaBL, potrebbe durare all'infinito
 - Rimuovere commenti "TODO: Usare long"
+- Implementare controllo eccezione in evento Load di UcCartella

@@ -53,6 +53,7 @@
             this.pnlAccesso.Name = "pnlAccesso";
             this.pnlAccesso.Size = new System.Drawing.Size(251, 213);
             this.pnlAccesso.TabIndex = 0;
+            this.pnlAccesso.Visible = false;
             // 
             // llRegistrati
             // 
@@ -141,6 +142,7 @@
             this.Name = "FrmAccesso";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Accesso - Tombola";
+            this.Load += new System.EventHandler(this.FrmAccesso_Load);
             this.pnlAccesso.ResumeLayout(false);
             this.pnlAccesso.PerformLayout();
             this.ResumeLayout(false);
