@@ -118,16 +118,6 @@ namespace EsLab0._1_Tombola_Sebastianelli_Tomas
             CercaPartitaPerNome(tbCerca.Text);
         }
 
-        private void tbCerca_Click(object sender, EventArgs e)
-        {
-            if (tbCerca.Text == SUGGERIMENTO_TB_RICERCA)
-            {
-                _suggerimentoTBRimosso = true;
-                tbCerca.Text = String.Empty;
-            }
-                
-        }
-
         private void tbCerca_TextChanged(object sender, EventArgs e)
         {
             if (!_suggerimentoTBRimosso)
@@ -154,5 +144,14 @@ namespace EsLab0._1_Tombola_Sebastianelli_Tomas
             tbCerca.Text = SUGGERIMENTO_TB_RICERCA;
         }
         #endregion
+
+        private void tbCerca_Enter(object sender, EventArgs e)
+        {
+            if (tbCerca.Text == SUGGERIMENTO_TB_RICERCA)
+            {
+                _suggerimentoTBRimosso = true;
+                tbCerca.Text = String.Empty;
+            }
+        }
     }
 }

@@ -13,7 +13,6 @@ namespace EsLab0._1_Tombola_Sebastianelli_Tomas
 
         #region Attributi
         long _id;
-
         long _idGiocatore;
         long _idPartita;
         int _primoNumero;
@@ -32,21 +31,21 @@ namespace EsLab0._1_Tombola_Sebastianelli_Tomas
         int _quattordicesimoNumero;
         int _quindicesimoNumero;
 
-        bool _primoNumeroEstratto;
-        bool _secondoNumeroEstratto;
-        bool _terzoNumeroEstratto;
-        bool _quartoNumeroEstratto;
-        bool _quintoNumeroEstratto;
-        bool _sestoNumeroEstratto;
-        bool _settimoNumeroEstratto;
-        bool _ottavoNumeroEstratto;
-        bool _nonoNumeroEstratto;
-        bool _decimoNumeroEstratto;
-        bool _undicesimoNumeroEstratto;
-        bool _dodicesimoNumeroEstratto;
-        bool _tredicesimoNumeroEstratto;
-        bool _quattordicesimoNumeroEstratto;
-        bool _quindicesimoNumeroEstratto;
+        bool _primoNumeroEstratto = false;
+        bool _secondoNumeroEstratto = false;
+        bool _terzoNumeroEstratto = false;
+        bool _quartoNumeroEstratto = false;
+        bool _quintoNumeroEstratto = false;
+        bool _sestoNumeroEstratto = false;
+        bool _settimoNumeroEstratto = false;
+        bool _ottavoNumeroEstratto = false;
+        bool _nonoNumeroEstratto = false;
+        bool _decimoNumeroEstratto = false;
+        bool _undicesimoNumeroEstratto = false;
+        bool _dodicesimoNumeroEstratto = false;
+        bool _tredicesimoNumeroEstratto = false;
+        bool _quattordicesimoNumeroEstratto = false;
+        bool _quindicesimoNumeroEstratto = false;
         #endregion
 
         #region Proprietà
@@ -62,6 +61,36 @@ namespace EsLab0._1_Tombola_Sebastianelli_Tomas
                     _id = value;
                 else
                     throw new Exception("L'ID della cartella non può assumere un valore negativo.");
+            }
+        }
+
+        public long IdGiocatore
+        {
+            get
+            {
+                return _idGiocatore;
+            }
+            set
+            {
+                if (value >= 0)
+                    _idGiocatore = value;
+                else
+                    throw new Exception("L'ID del giocatore non può assumere un valore negativo.");
+            }
+        }
+
+        public long IdPartita
+        {
+            get
+            {
+                return _idPartita;
+            }
+            set
+            {
+                if (value >= 0)
+                    _idPartita = value;
+                else
+                    throw new Exception("L'ID della partita non può assumere un valore negativo.");
             }
         }
 

@@ -1,2 +1,4 @@
 ﻿- Terminare ricerca per nome in ClsPartitaBL
 - Spostare metodi accesso e registrazione su ClsUtenteBL
+- L'algoritmo di generazione delle cartelle, in ClsCartellaBL, potrebbe durare all'infinito
+- Rimuovere commenti "TODO: Usare long"

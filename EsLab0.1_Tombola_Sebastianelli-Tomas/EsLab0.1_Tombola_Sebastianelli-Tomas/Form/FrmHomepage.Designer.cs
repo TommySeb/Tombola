@@ -126,11 +126,11 @@
             this.tbCerca.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbCerca.Location = new System.Drawing.Point(18, 59);
             this.tbCerca.Name = "tbCerca";
-            this.tbCerca.Size = new System.Drawing.Size(280, 30);
+            this.tbCerca.Size = new System.Drawing.Size(280, 28);
             this.tbCerca.TabIndex = 5;
             this.tbCerca.Text = "Cerca per nome...";
-            this.tbCerca.Click += new System.EventHandler(this.tbCerca_Click);
             this.tbCerca.TextChanged += new System.EventHandler(this.tbCerca_TextChanged);
+            this.tbCerca.Enter += new System.EventHandler(this.tbCerca_Enter);
             // 
             // btCerca
             // 

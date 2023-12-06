@@ -36,13 +36,13 @@ namespace EsLab0._1_Tombola_Sebastianelli_Tomas
             // Query al DB
             _partite = _dbManager.GetDataTableByQuery("SELECT * FROM partite", null, ref _errore);
 
-            // Creo i vari oggetti di classe partita se non si sono verificati errori
+            // Creo i vari oggetti di classe partita e li inserisco nella lista se non si sono verificati errori
             if (String.IsNullOrEmpty(_errore))
             {
                 for(int i = 0; i < _partite.Rows.Count; i++)
                 {
                     ClsPartitaDB _partita = new ClsPartitaDB();
-                    _partita.Id = Convert.ToInt64(_partite.Rows[i]["id"]);      // TODO: Usare long
+                    _partita.Id = Convert.ToInt64(_partite.Rows[i]["id"]);
                     _partita.Nome = (string)_partite.Rows[i]["nome"];
                     _partita.Prezzo = (Decimal)_partite.Rows[i]["prezzo"];
                     _partita.ValoreAmbo = (Decimal)_partite.Rows[i]["valore_ambo"];
