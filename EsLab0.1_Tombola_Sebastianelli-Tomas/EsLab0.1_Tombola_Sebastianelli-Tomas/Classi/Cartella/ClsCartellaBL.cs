@@ -92,13 +92,14 @@ namespace EsLab0._1_Tombola_Sebastianelli_Tomas
             int _indiceCartella = 0;
 
             // Ricerca della posizione della cartella nella lista di cartelle
-            do
-            {
+            while(_indiceCartella < Program._cartelle.Count && Program._cartelle[_indiceCartella].Id != idDaCercare)
                 _indiceCartella++;
-            } while (_indiceCartella < Program._cartelle.Count && Program._cartelle[_indiceCartella].Id == idDaCercare);
 
-            // Ritorno l'indice della cartella (O -1 se non ho trovato nulla
-            return _indiceCartella - 1;
+            // Ritorno l'indice della cartella (O -1 se non ho trovato nulla)
+            if (_indiceCartella != Program._cartelle.Count)
+                return _indiceCartella;
+            else
+                return -1;
         }
 
         /// <summary>

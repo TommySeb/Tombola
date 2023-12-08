@@ -15,6 +15,7 @@ namespace EsLab0._1_Tombola_Sebastianelli_Tomas
         #region Variabili
         long _idCartella;
         ClsCartellaBL _metodiCartella = new ClsCartellaBL(Program._dbManager);
+        ClsPartitaBL _metodiPartita = new ClsPartitaBL(Program._dbManager);
         #endregion
 
         #region Costruttore
@@ -31,43 +32,63 @@ namespace EsLab0._1_Tombola_Sebastianelli_Tomas
         private void UcCartella_Load(object sender, EventArgs e)
         {
             // Dichiarazione variabili necessarie
+            int _indiceCartella;
+            int _indicePartita;
             int[] _numeriCartella;
             int _indiceNumeroDaPosizionare = 0;
             int x = 20;
             int y = 56;
-            int offset = 10;
+            int _latoCasella = 60;
+            int _offset = 10;
 
-            // Ottengo i numeri della cartella come array
-            // TODO: Implementare controllo eccezione --> Errore _numeriCartella risulta non dichiarata e non so come annullare creazione cartella
-            _numeriCartella = _metodiCartella.OttieniNumeriCartella(_idCartella);
-            
-            // Genera la casella con i relativi numeri
-            // TODO: Rivedere implementazione
-            for (int i = 0; i < 10; i++)
+            // Ricerca degli indici della cartella e della partita
+            _indiceCartella = _metodiCartella.CercaCartellaPerID(_idCartella);
+            _indicePartita = _metodiPartita.CercaPartitaDaID(Program._cartelle[_indiceCartella].IdPartita);
+
+            // Procedo solo se questi esistono
+            if(_indiceCartella != -1 && _indicePartita != -1)
             {
-                for (int k = 0; k < 3; k++)
+                // Caricamento nome partita e ID cartella
+                lblNomePartita.Text += " " + Program._partite[_indicePartita].Nome;
+                lblID.Text += " " + _idCartella;
+
+                // Ottengo i numeri della cartella come array
+                _numeriCartella = _metodiCartella.OttieniNumeriCartella(_idCartella);
+
+                // Genera le caselle dei numeri
+                for (int i = 0; i < 10; i++)
                 {
-                    // Dichiarazione casella
-                    UcCasellaNumero ucCasellaNumero;
-
-                    // Verifico se inserire dentro la casella un numero o lasciarla vuota
-                    if(_numeriCartella[_indiceNumeroDaPosizionare] > k * 10 && _numeriCartella[_indiceNumeroDaPosizionare] < k * 10 + 9)
+                    for (int k = 0; k < 3; k++)
                     {
-                        ucCasellaNumero = new UcCasellaNumero(_numeriCartella[_indiceNumeroDaPosizionare]);
-                        _indiceNumeroDaPosizionare++;
+                        // Dichiarazione casella
+                        UcCasellaNumero ucCasellaNumero;
+
+                        // Verifico se inserire dentro la casella un numero o lasciarla vuota
+                        if (_indiceNumeroDaPosizionare < 15 && _numeriCartella[_indiceNumeroDaPosizionare] >= i * 10 && _numeriCartella[_indiceNumeroDaPosizionare] <= i * 10 + 9)
+                        {
+                            ucCasellaNumero = new UcCasellaNumero(_numeriCartella[_indiceNumeroDaPosizionare]);
+                            _indiceNumeroDaPosizionare++;
+                        }
+                        else
+                            ucCasellaNumero = new UcCasellaNumero(0);
+
+                        // Indico la posizione della casella e la inserisco nella cartella
+                        ucCasellaNumero.Location = new Point(x, y);
+
+                        y += _latoCasella + _offset;
+
+                        this.Controls.Add(ucCasellaNumero);
                     }
-                    else
-                        ucCasellaNumero = new UcCasellaNumero(0);
 
-                    // Indico la posizione della casella e la inserisco nella cartella
-                    ucCasellaNumero.Location = new Point(x, y);
-                    x += ucCasellaNumero.Size.Width + offset;
-                    this.Controls.Add(ucCasellaNumero);
+                    x += _latoCasella + _offset;
+                    y = 56;
                 }
-
-                x = 20;
-                y += /*UcCasellaNumero.Size.Height*/ 60 + offset;
             }
+            else
+            {
+                // Come posso annullare il caricamento della cartella?
+            }
+            
         }
         #endregion
     }

@@ -69,11 +69,7 @@ namespace EsLab0._1_Tombola_Sebastianelli_Tomas
 
         private void FrmAccesso_Load(object sender, EventArgs e)
         {
-            // Tmp
-            ClsCartellaBL metodi = new ClsCartellaBL(Program._dbManager);
-            metodi.OttieniCartelleDaDB();
-            UcCartella ucCartella = new UcCartella(1);
-            this.Controls.Add(ucCartella);
+
         }
     }
 }

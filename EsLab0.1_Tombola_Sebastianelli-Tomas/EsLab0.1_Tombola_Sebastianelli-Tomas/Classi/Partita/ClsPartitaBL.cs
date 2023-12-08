@@ -59,25 +59,23 @@ namespace EsLab0._1_Tombola_Sebastianelli_Tomas
         }
 
         /// <summary>
-        /// Ritorna la posizione di una partita nella lista di partite
+        /// Ritorna la posizione di una partita nella lista di partite (-1 se non trovata)
         /// </summary>
         /// <param name="id">ID della partita da cercare</param>
         /// <returns></returns>
         public int CercaPartitaDaID(long id)
         {
-            // Aggiorno la lista delle partite in RAM
-            OttieniPartiteDaDB();
-
             // Ricerca della posizione della partita nella lista di partite
             int i = 0;
 
-            do
-            {
+            while (i < Program._partite.Count && Program._partite[i].Id != id)
                 i++;
-            } while (Program._partite[i].Id != id && i < Program._partite.Count);
 
             // Ritorno l'indice della partita
-            return i;
+            if (i != Program._partite.Count)
+                return i;
+            else
+                return -1;
         }
 
         /// <summary>

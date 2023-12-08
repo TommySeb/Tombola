@@ -38,9 +38,9 @@
             this.lblNomePartita.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblNomePartita.Location = new System.Drawing.Point(15, 14);
             this.lblNomePartita.Name = "lblNomePartita";
-            this.lblNomePartita.Size = new System.Drawing.Size(122, 25);
+            this.lblNomePartita.Size = new System.Drawing.Size(128, 25);
             this.lblNomePartita.TabIndex = 0;
-            this.lblNomePartita.Text = "Nome partita";
+            this.lblNomePartita.Text = "Nome partita:";
             // 
             // lblID
             // 
@@ -59,7 +59,7 @@
             this.Controls.Add(this.lblID);
             this.Controls.Add(this.lblNomePartita);
             this.Name = "UcCartella";
-            this.Size = new System.Drawing.Size(623, 262);
+            this.Size = new System.Drawing.Size(730, 276);
             this.Load += new System.EventHandler(this.UcCartella_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
