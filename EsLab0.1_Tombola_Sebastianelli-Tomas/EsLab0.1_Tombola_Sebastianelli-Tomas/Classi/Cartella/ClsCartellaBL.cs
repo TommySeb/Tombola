@@ -162,8 +162,8 @@ namespace EsLab0._1_Tombola_Sebastianelli_Tomas
                 int _primaCifraNumeroGenerato = 0;
                 int _tmp = 0;
 
-                // Genero un numero a caso compreso tra 1 e 99
-                _numeroGenerato = _random.Next(1, 99);
+                // Genero un numero a caso compreso tra 1 e 90
+                _numeroGenerato = _random.Next(1, 90);
 
                 // Memorizzo la prima cifra del numero
                 if (_numeroGenerato.ToString().Length == 1)
@@ -173,7 +173,7 @@ namespace EsLab0._1_Tombola_Sebastianelli_Tomas
 
                 // Verifico quanti numeri iniziano con quella cifra
                 foreach (int _numero in _numeriGenerati)
-                    if (_numero > _primaCifraNumeroGenerato * 10 && _numero < _primaCifraNumeroGenerato * 10 + 9)
+                    if (_numero >= _primaCifraNumeroGenerato * 10 && _numero <= _primaCifraNumeroGenerato * 10 + 9)
                         _tmp++;
 
                 // Se i numeri che iniziano con quella cifra sono minori di tre e il numero non è stato già generato posso effettuare l'inserimento
