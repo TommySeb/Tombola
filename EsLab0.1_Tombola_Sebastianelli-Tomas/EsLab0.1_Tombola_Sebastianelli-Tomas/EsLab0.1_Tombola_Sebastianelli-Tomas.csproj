@@ -132,10 +132,10 @@
     <Compile Include="Classi\Estrazione\ClsEstrazioneBL.cs" />
     <Compile Include="Classi\Giocatore\ClsGiocatoreBL.cs" />
     <Compile Include="Classi\Partita\ClsPartitaBL.cs" />
-    <Compile Include="FrmDetailsPartita.cs">
+    <Compile Include="Form\FrmDetailsPartita.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrmDetailsPartita.Designer.cs">
+    <Compile Include="Form\FrmDetailsPartita.Designer.cs">
       <DependentUpon>FrmDetailsPartita.cs</DependentUpon>
     </Compile>
     <Compile Include="Lib\DBManager.cs" />
@@ -198,7 +198,7 @@
     <EmbeddedResource Include="Form\FrmBanco.resx">
       <DependentUpon>FrmBanco.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmDetailsPartita.resx">
+    <EmbeddedResource Include="Form\FrmDetailsPartita.resx">
       <DependentUpon>FrmDetailsPartita.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">

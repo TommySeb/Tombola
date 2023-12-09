@@ -49,6 +49,7 @@
             this.Controls.Add(this.label1);
             this.Name = "FrmGioco";
             this.Text = "Gioco - Tombola";
+            this.Load += new System.EventHandler(this.FrmGioco_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

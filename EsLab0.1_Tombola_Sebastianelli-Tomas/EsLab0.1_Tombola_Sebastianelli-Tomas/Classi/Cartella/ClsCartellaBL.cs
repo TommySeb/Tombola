@@ -20,6 +20,9 @@ namespace EsLab0._1_Tombola_Sebastianelli_Tomas
         #endregion
 
         #region Metodi
+        /// <summary>
+        /// Ottiene tutte le cartelle dal DB
+        /// </summary>
         public void OttieniCartelleDaDB()
         {
             // Dichiarazione variabili necessarie
@@ -100,6 +103,28 @@ namespace EsLab0._1_Tombola_Sebastianelli_Tomas
                 return _indiceCartella;
             else
                 return -1;
+        }
+
+        /// <summary>
+        /// Effettua una ricerca delle cartelle appartenenti ad un giocatore per una partita
+        /// </summary>
+        /// <param name="idPartita">ID della partita</param>
+        /// <param name="idGiocatore">ID del giocatore</param>
+        /// <returns></returns>
+        public List<int> CercaCartellaPerPartitaEUtente(long idPartita, long idGiocatore)
+        {
+            // Dichiarazione variabili
+            List<int> _indiceCartelleTrovate = new List<int>(0);
+
+            // Effettuo la ricerca
+            for(int i = 0; i < Program._cartelle.Count; i++)
+            {
+                if (Program._cartelle[i].IdPartita == idPartita && Program._cartelle[i].IdGiocatore == idGiocatore)
+                    _indiceCartelleTrovate.Add(i);
+            }
+
+            // Restituisci i risultati trovati
+            return _indiceCartelleTrovate;
         }
 
         /// <summary>

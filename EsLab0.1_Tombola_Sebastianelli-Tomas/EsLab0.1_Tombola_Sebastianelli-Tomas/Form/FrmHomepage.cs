@@ -45,6 +45,7 @@ namespace EsLab0._1_Tombola_Sebastianelli_Tomas
                 ListViewItem lvi = new ListViewItem(partita.Id.ToString());
                 lvi.SubItems.Add(partita.Nome);
                 lvi.SubItems.Add(partita.Prezzo.ToString());
+                lvi.Tag = partita.Id;
 
                 lvPartite.Items.Add(lvi);
             }
@@ -156,7 +157,21 @@ namespace EsLab0._1_Tombola_Sebastianelli_Tomas
         private void btCrea_Click(object sender, EventArgs e)
         {
             // Apri la form di creazione della partita
-            
+            FrmDetailsPartita frmDetailsPartita = new FrmDetailsPartita(-1);
+            frmDetailsPartita.ShowDialog();
+        }
+
+        private void btGioca_Click(object sender, EventArgs e)
+        {
+            // Apri la form di gioco se è stata selezionata una partita
+            if (lvPartite.SelectedItems.Count == 1)
+            {
+                FrmGioco frmGioco = new FrmGioco(Convert.ToInt32(lvPartite.SelectedItems[0].Tag));
+                frmGioco.Owner = this;
+                frmGioco.ShowDialog();
+            }
+            else
+                MessageBox.Show("Nessuna partita selezionata, selezionarne una per continuare.", "Errore", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
         #endregion
     }

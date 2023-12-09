@@ -109,6 +109,7 @@
             this.btGioca.TabIndex = 3;
             this.btGioca.Text = "Gioca";
             this.btGioca.UseVisualStyleBackColor = false;
+            this.btGioca.Click += new System.EventHandler(this.btGioca_Click);
             // 
             // btCrea
             // 
