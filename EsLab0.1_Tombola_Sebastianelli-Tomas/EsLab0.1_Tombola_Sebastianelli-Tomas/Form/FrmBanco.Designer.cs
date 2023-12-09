@@ -28,24 +28,28 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.label1 = new System.Windows.Forms.Label();
+            this.lblNomePartita = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.btEstrai = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // label1
+            // lblNomePartita
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(12, 9);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(122, 25);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Nome partita";
+            this.lblNomePartita.AutoSize = true;
+            this.lblNomePartita.BackColor = System.Drawing.Color.Transparent;
+            this.lblNomePartita.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNomePartita.ForeColor = System.Drawing.Color.White;
+            this.lblNomePartita.Location = new System.Drawing.Point(12, 9);
+            this.lblNomePartita.Name = "lblNomePartita";
+            this.lblNomePartita.Size = new System.Drawing.Size(128, 25);
+            this.lblNomePartita.TabIndex = 0;
+            this.lblNomePartita.Text = "Nome partita:";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
+            this.label2.BackColor = System.Drawing.Color.Transparent;
+            this.label2.ForeColor = System.Drawing.Color.White;
             this.label2.Location = new System.Drawing.Point(14, 49);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(77, 13);
@@ -54,7 +58,7 @@
             // 
             // btEstrai
             // 
-            this.btEstrai.Location = new System.Drawing.Point(641, 39);
+            this.btEstrai.Location = new System.Drawing.Point(564, 39);
             this.btEstrai.Name = "btEstrai";
             this.btEstrai.Size = new System.Drawing.Size(75, 23);
             this.btEstrai.TabIndex = 57;
@@ -65,10 +69,13 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(728, 759);
+            this.BackgroundImage = global::EsLab0._1_Tombola_Sebastianelli_Tomas.Properties.Resources.Sfondo_744x798;
+            this.ClientSize = new System.Drawing.Size(653, 703);
             this.Controls.Add(this.btEstrai);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.lblNomePartita);
+            this.DoubleBuffered = true;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "FrmBanco";
             this.Text = "Banco - Tombola";
             this.Load += new System.EventHandler(this.FrmBanco_Load);
@@ -79,7 +86,7 @@
 
         #endregion
 
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblNomePartita;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button btEstrai;
     }

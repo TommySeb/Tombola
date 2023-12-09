@@ -69,7 +69,8 @@ namespace EsLab0._1_Tombola_Sebastianelli_Tomas
 
         private void FrmAccesso_Load(object sender, EventArgs e)
         {
-
+            ClsCartellaBL _metodiCartella = new ClsCartellaBL(Program._dbManager);
+            _metodiCartella.GeneraCartella(9, 1);
         }
     }
 }

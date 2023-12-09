@@ -35,8 +35,8 @@
             this.Nome = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.CostoCartella = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.label1 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.btGioca = new System.Windows.Forms.Button();
+            this.btCrea = new System.Windows.Forms.Button();
             this.tbCerca = new System.Windows.Forms.TextBox();
             this.btCerca = new System.Windows.Forms.Button();
             this.btAggiorna = new System.Windows.Forms.Button();
@@ -99,27 +99,28 @@
             this.label1.TabIndex = 2;
             this.label1.Text = "Partite disponibili:";
             // 
-            // button1
+            // btGioca
             // 
-            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(46)))), ((int)(((byte)(91)))));
-            this.button1.ForeColor = System.Drawing.Color.White;
-            this.button1.Location = new System.Drawing.Point(440, 95);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(107, 30);
-            this.button1.TabIndex = 3;
-            this.button1.Text = "Gioca";
-            this.button1.UseVisualStyleBackColor = false;
+            this.btGioca.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(46)))), ((int)(((byte)(91)))));
+            this.btGioca.ForeColor = System.Drawing.Color.White;
+            this.btGioca.Location = new System.Drawing.Point(440, 95);
+            this.btGioca.Name = "btGioca";
+            this.btGioca.Size = new System.Drawing.Size(107, 30);
+            this.btGioca.TabIndex = 3;
+            this.btGioca.Text = "Gioca";
+            this.btGioca.UseVisualStyleBackColor = false;
             // 
-            // button2
+            // btCrea
             // 
-            this.button2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(174)))), ((int)(((byte)(173)))), ((int)(((byte)(240)))));
-            this.button2.ForeColor = System.Drawing.Color.White;
-            this.button2.Location = new System.Drawing.Point(440, 131);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(107, 30);
-            this.button2.TabIndex = 4;
-            this.button2.Text = "Crea nuova partita";
-            this.button2.UseVisualStyleBackColor = false;
+            this.btCrea.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(174)))), ((int)(((byte)(173)))), ((int)(((byte)(240)))));
+            this.btCrea.ForeColor = System.Drawing.Color.White;
+            this.btCrea.Location = new System.Drawing.Point(440, 131);
+            this.btCrea.Name = "btCrea";
+            this.btCrea.Size = new System.Drawing.Size(107, 30);
+            this.btCrea.TabIndex = 4;
+            this.btCrea.Text = "Crea nuova partita";
+            this.btCrea.UseVisualStyleBackColor = false;
+            this.btCrea.Click += new System.EventHandler(this.btCrea_Click);
             // 
             // tbCerca
             // 
@@ -175,8 +176,8 @@
             this.Controls.Add(this.btAggiorna);
             this.Controls.Add(this.btCerca);
             this.Controls.Add(this.tbCerca);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btCrea);
+            this.Controls.Add(this.btGioca);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.lvPartite);
             this.Controls.Add(this.lblUtente);
@@ -199,8 +200,8 @@
         private System.Windows.Forms.ColumnHeader Nome;
         private System.Windows.Forms.ColumnHeader CostoCartella;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button btGioca;
+        private System.Windows.Forms.Button btCrea;
         private System.Windows.Forms.TextBox tbCerca;
         private System.Windows.Forms.Button btCerca;
         private System.Windows.Forms.Button btAggiorna;

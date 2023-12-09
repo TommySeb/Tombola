@@ -16,7 +16,7 @@ namespace EsLab0._1_Tombola_Sebastianelli_Tomas
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FrmAccesso());
+            Application.Run(new FrmBanco(1));
         }
 
         #region Variabili pubbliche

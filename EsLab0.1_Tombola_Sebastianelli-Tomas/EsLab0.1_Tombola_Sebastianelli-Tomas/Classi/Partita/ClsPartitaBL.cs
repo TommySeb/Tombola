@@ -59,6 +59,40 @@ namespace EsLab0._1_Tombola_Sebastianelli_Tomas
         }
 
         /// <summary>
+        /// Crea una partita e la inserisce sul DB
+        /// </summary>
+        /// <param name="nome">Nome della partita</param>
+        /// <param name="prezzo">Prezzo della partita</param>
+        /// <param name="valoreAmbo">Valore in caso di ambo</param>
+        /// <param name="valoreTerna">Valore in caso di terna</param>
+        /// <param name="valoreQuaterna">Valore in caso di quaterna</param>
+        /// <param name="valoreCinquina">Valore in caso di cinquina</param>
+        /// <param name="valoreTombola">Valore in caso di tombola</param>
+        public void CreaPartita(string nome, decimal prezzo, decimal valoreAmbo, decimal valoreTerna, decimal valoreQuaterna, decimal valoreCinquina, decimal valoreTombola)
+        {
+            // Inserimento partita su DB
+            string _errore = String.Empty;
+            int _righeInserite;
+
+            MySqlConnector.MySqlParameter[] _parametriQuery =
+            {
+                new MySqlConnector.MySqlParameter("@NOME", nome),
+                new MySqlConnector.MySqlParameter("@PREZZO", prezzo),
+                new MySqlConnector.MySqlParameter("@VALORE_AMBO", valoreAmbo),
+                new MySqlConnector.MySqlParameter("@VALORE_TERNA", valoreTerna),
+                new MySqlConnector.MySqlParameter("@VALORE_QUATERNA", valoreQuaterna),
+                new MySqlConnector.MySqlParameter("@VALORE_CINQUINA", valoreCinquina),
+                new MySqlConnector.MySqlParameter("@VALORE_TOMBOLA", valoreTombola)
+            };
+
+            _righeInserite = Program._dbManager.GetAffectedRows("INSERT INTO partite (nome, prezzo, valore_ambo, valore_terna, valore_quaterna, valore_cinquina, valore_tombola) VALUES (@NOME, @PREZZO, @VALORE_AMBO, @VALORE_TERNA, @VALORE_QUATERNA, @VALORE_CINQUINA, @VALORE_TOMBOLA", _parametriQuery, ref _errore);
+
+            // In caso di inserimento riuscito apri la FrmBanco
+            if (String.IsNullOrEmpty(_errore) && _righeInserite == 1)
+                throw new Exception("Errore durante il tentativo di inserire la partita sul DB: \r\n " + _errore);
+        }
+
+        /// <summary>
         /// Ritorna la posizione di una partita nella lista di partite (-1 se non trovata)
         /// </summary>
         /// <param name="id">ID della partita da cercare</param>

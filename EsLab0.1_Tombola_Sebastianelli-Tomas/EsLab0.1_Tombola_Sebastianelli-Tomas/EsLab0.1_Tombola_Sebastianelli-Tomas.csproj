@@ -132,6 +132,12 @@
     <Compile Include="Classi\Estrazione\ClsEstrazioneBL.cs" />
     <Compile Include="Classi\Giocatore\ClsGiocatoreBL.cs" />
     <Compile Include="Classi\Partita\ClsPartitaBL.cs" />
+    <Compile Include="FrmDetailsPartita.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmDetailsPartita.Designer.cs">
+      <DependentUpon>FrmDetailsPartita.cs</DependentUpon>
+    </Compile>
     <Compile Include="Lib\DBManager.cs" />
     <Compile Include="Form\FrmRegistrazione.cs">
       <SubType>Form</SubType>
@@ -192,6 +198,9 @@
     <EmbeddedResource Include="Form\FrmBanco.resx">
       <DependentUpon>FrmBanco.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FrmDetailsPartita.resx">
+      <DependentUpon>FrmDetailsPartita.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -227,6 +236,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Cerca.png" />
+    <None Include="Resources\Sfondo_744x798.png" />
     <Content Include="TODO.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

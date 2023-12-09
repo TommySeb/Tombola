@@ -53,7 +53,6 @@
             this.pnlAccesso.Name = "pnlAccesso";
             this.pnlAccesso.Size = new System.Drawing.Size(251, 213);
             this.pnlAccesso.TabIndex = 0;
-            this.pnlAccesso.Visible = false;
             // 
             // llRegistrati
             // 

@@ -79,5 +79,15 @@ namespace EsLab0._1_Tombola_Sebastianelli_Tomas.Properties {
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
+        
+        /// <summary>
+        ///   Cerca una risorsa localizzata di tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Sfondo_744x798 {
+            get {
+                object obj = ResourceManager.GetObject("Sfondo_744x798", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
     }
 }
