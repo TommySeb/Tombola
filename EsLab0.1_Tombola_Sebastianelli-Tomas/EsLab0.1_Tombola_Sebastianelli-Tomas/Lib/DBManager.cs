@@ -24,7 +24,7 @@ namespace EsLab0._1_Tombola_Sebastianelli_Tomas
             get
             {
                 if (String.IsNullOrWhiteSpace(_stringaConnessione))
-                    return ConfigurationManager.ConnectionStrings["server"].ConnectionString;
+                    return ConfigurationManager.ConnectionStrings[Program._nomeConnectionString].ConnectionString;
                 else return _stringaConnessione;
             }
         }

@@ -31,8 +31,13 @@ namespace EsLab0._1_Tombola_Sebastianelli_Tomas
         /// <returns></returns>
         public bool EsisteGiocatore(string email, string password)
         {
+            string _query;
+
             // Ottengo gli utenti con le credenziali specificate dal DB
-            string _query = "SELECT * FROM giocatori WHERE email = @EMAIL and password = @PASSWORD";
+            if(Program._nomeConnectionString == "serverLocale")
+                _query = "SELECT * FROM giocatori WHERE email = @EMAIL and password = @PASSWORD";
+            else
+                _query = "SELECT * FROM st10453_giocatori WHERE email = @EMAIL and password = @PASSWORD";
 
             MySqlParameter[] _parametriLogin = {
                 new MySqlParameter("@EMAIL", email),
@@ -85,9 +90,13 @@ namespace EsLab0._1_Tombola_Sebastianelli_Tomas
 
             try
             {
+                string sql;
                 // Effettuo la query di inserimento sul DB
                 // TODO: Implementare crittografia
-                string sql = "INSERT INTO giocatori (nome, cognome, nickname, data_nascita, genere, email, password, portafoglio) VALUES (@nome, @cognome, @nickname, @data_nascita, @genere, @email, @password, 0)";
+                if(Program._nomeConnectionString == "serverLocale")
+                    sql = "INSERT INTO giocatori (nome, cognome, nickname, data_nascita, genere, email, password, portafoglio) VALUES (@nome, @cognome, @nickname, @data_nascita, @genere, @email, @password, 0)";
+                else
+                    sql = "INSERT INTO st10453_giocatori (nome, cognome, nickname, data_nascita, genere, email, password, portafoglio) VALUES (@nome, @cognome, @nickname, @data_nascita, @genere, @email, @password, 0)";
 
                 MySqlParameter[] parametri =
                 {

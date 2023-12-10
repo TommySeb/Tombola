@@ -37,7 +37,12 @@
             this.tbPassword = new System.Windows.Forms.MaskedTextBox();
             this.tbEmail = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.label4 = new System.Windows.Forms.Label();
+            this.rbLocale = new System.Windows.Forms.RadioButton();
+            this.rbRemoto = new System.Windows.Forms.RadioButton();
             this.pnlAccesso.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnlAccesso
@@ -128,12 +133,56 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Accesso";
             // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.rbRemoto);
+            this.panel1.Controls.Add(this.rbLocale);
+            this.panel1.Controls.Add(this.label4);
+            this.panel1.Location = new System.Drawing.Point(12, 393);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(149, 45);
+            this.panel1.TabIndex = 1;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(10, 7);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(91, 13);
+            this.label4.TabIndex = 2;
+            this.label4.Text = "Gioca con server:";
+            // 
+            // rbLocale
+            // 
+            this.rbLocale.AutoSize = true;
+            this.rbLocale.Checked = true;
+            this.rbLocale.Location = new System.Drawing.Point(13, 21);
+            this.rbLocale.Name = "rbLocale";
+            this.rbLocale.Size = new System.Drawing.Size(57, 17);
+            this.rbLocale.TabIndex = 2;
+            this.rbLocale.TabStop = true;
+            this.rbLocale.Text = "Locale";
+            this.rbLocale.UseVisualStyleBackColor = true;
+            this.rbLocale.CheckedChanged += new System.EventHandler(this.rbLocale_CheckedChanged);
+            // 
+            // rbRemoto
+            // 
+            this.rbRemoto.AutoSize = true;
+            this.rbRemoto.Location = new System.Drawing.Point(76, 21);
+            this.rbRemoto.Name = "rbRemoto";
+            this.rbRemoto.Size = new System.Drawing.Size(62, 17);
+            this.rbRemoto.TabIndex = 3;
+            this.rbRemoto.Text = "Remoto";
+            this.rbRemoto.UseVisualStyleBackColor = true;
+            this.rbRemoto.CheckedChanged += new System.EventHandler(this.rbRemoto_CheckedChanged);
+            // 
             // FrmAccesso
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::EsLab0._1_Tombola_Sebastianelli_Tomas.Properties.Resources.Sfondo;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.pnlAccesso);
             this.ForeColor = System.Drawing.SystemColors.ControlText;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -141,9 +190,10 @@
             this.Name = "FrmAccesso";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Accesso - Tombola";
-            this.Load += new System.EventHandler(this.FrmAccesso_Load);
             this.pnlAccesso.ResumeLayout(false);
             this.pnlAccesso.PerformLayout();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -158,6 +208,10 @@
         private System.Windows.Forms.TextBox tbEmail;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.LinkLabel llRegistrati;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.RadioButton rbRemoto;
+        private System.Windows.Forms.RadioButton rbLocale;
+        private System.Windows.Forms.Label label4;
     }
 }
 

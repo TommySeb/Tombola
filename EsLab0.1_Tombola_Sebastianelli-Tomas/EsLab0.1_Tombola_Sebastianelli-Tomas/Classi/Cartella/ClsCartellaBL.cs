@@ -33,7 +33,10 @@ namespace EsLab0._1_Tombola_Sebastianelli_Tomas
             Program._cartelle.Clear();
 
             // Query al DB
-            _cartelleOttenute = _dbManager.GetDataTableByQuery("SELECT * FROM cartelle", null, ref _errore);
+            if(Program._nomeConnectionString == "serverLocale")
+                _cartelleOttenute = _dbManager.GetDataTableByQuery("SELECT * FROM cartelle", null, ref _errore);
+            else
+                _cartelleOttenute = _dbManager.GetDataTableByQuery("SELECT * FROM st10453_cartelle", null, ref _errore);
 
             // Creo i vari oggetti di classe cartella e li inserisco nella lista se non si sono verificati errori
             if (String.IsNullOrEmpty(_errore))
@@ -231,8 +234,11 @@ namespace EsLab0._1_Tombola_Sebastianelli_Tomas
                 new MySqlConnector.MySqlParameter("@QUINDICESIMO_NUMERO", _numeriGenerati[14])
             };
 
-            _dbManager.GetAffectedRows("INSERT INTO cartelle(id_giocatore, id_partita, primo_numero, secondo_numero, terzo_numero, quarto_numero, quinto_numero, sesto_numero, settimo_numero, ottavo_numero, nono_numero, decimo_numero, undicesimo_numero, dodicesimo_numero, tredicesimo_numero, quattordicesimo_numero, quindicesimo_numero, primo_numero_estratto, secondo_numero_estratto, terzo_numero_estratto, quarto_numero_estratto, quinto_numero_estratto, sesto_numero_estratto, settimo_numero_estratto, ottavo_numero_estratto, nono_numero_estratto, decimo_numero_estratto, undicesimo_numero_estratto, dodicesimo_numero_estratto, tredicesimo_numero_estratto, quattordicesimo_numero_estratto, quindicesimo_numero_estratto) VALUES (@ID_GIOCATORE, @ID_PARTITA, @PRIMO_NUMERO, @SECONDO_NUMERO, @TERZO_NUMERO, @QUARTO_NUMERO, @QUINTO_NUMERO, @SESTO_NUMERO, @SETTIMO_NUMERO, @OTTAVO_NUMERO, @NONO_NUMERO, @DECIMO_NUMERO, @UNDICESIMO_NUMERO, @DODICESIMO_NUMERO, @TREDICESIMO_NUMERO, @QUATTORDICESIMO_NUMERO, @QUINDICESIMO_NUMERO, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false)", _parametriQuery, ref _erroreDB);
-
+            if(Program._nomeConnectionString == "serverLocale")
+                _dbManager.GetAffectedRows("INSERT INTO cartelle (id_giocatore, id_partita, primo_numero, secondo_numero, terzo_numero, quarto_numero, quinto_numero, sesto_numero, settimo_numero, ottavo_numero, nono_numero, decimo_numero, undicesimo_numero, dodicesimo_numero, tredicesimo_numero, quattordicesimo_numero, quindicesimo_numero, primo_numero_estratto, secondo_numero_estratto, terzo_numero_estratto, quarto_numero_estratto, quinto_numero_estratto, sesto_numero_estratto, settimo_numero_estratto, ottavo_numero_estratto, nono_numero_estratto, decimo_numero_estratto, undicesimo_numero_estratto, dodicesimo_numero_estratto, tredicesimo_numero_estratto, quattordicesimo_numero_estratto, quindicesimo_numero_estratto) VALUES (@ID_GIOCATORE, @ID_PARTITA, @PRIMO_NUMERO, @SECONDO_NUMERO, @TERZO_NUMERO, @QUARTO_NUMERO, @QUINTO_NUMERO, @SESTO_NUMERO, @SETTIMO_NUMERO, @OTTAVO_NUMERO, @NONO_NUMERO, @DECIMO_NUMERO, @UNDICESIMO_NUMERO, @DODICESIMO_NUMERO, @TREDICESIMO_NUMERO, @QUATTORDICESIMO_NUMERO, @QUINDICESIMO_NUMERO, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false)", _parametriQuery, ref _erroreDB);
+            else
+                _dbManager.GetAffectedRows("INSERT INTO st10453_cartelle (id_giocatore, id_partita, primo_numero, secondo_numero, terzo_numero, quarto_numero, quinto_numero, sesto_numero, settimo_numero, ottavo_numero, nono_numero, decimo_numero, undicesimo_numero, dodicesimo_numero, tredicesimo_numero, quattordicesimo_numero, quindicesimo_numero, primo_numero_estratto, secondo_numero_estratto, terzo_numero_estratto, quarto_numero_estratto, quinto_numero_estratto, sesto_numero_estratto, settimo_numero_estratto, ottavo_numero_estratto, nono_numero_estratto, decimo_numero_estratto, undicesimo_numero_estratto, dodicesimo_numero_estratto, tredicesimo_numero_estratto, quattordicesimo_numero_estratto, quindicesimo_numero_estratto) VALUES (@ID_GIOCATORE, @ID_PARTITA, @PRIMO_NUMERO, @SECONDO_NUMERO, @TERZO_NUMERO, @QUARTO_NUMERO, @QUINTO_NUMERO, @SESTO_NUMERO, @SETTIMO_NUMERO, @OTTAVO_NUMERO, @NONO_NUMERO, @DECIMO_NUMERO, @UNDICESIMO_NUMERO, @DODICESIMO_NUMERO, @TREDICESIMO_NUMERO, @QUATTORDICESIMO_NUMERO, @QUINDICESIMO_NUMERO, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false)", _parametriQuery, ref _erroreDB);
+            
             // Aggiornamento lista delle cartelle
             if (String.IsNullOrEmpty(_erroreDB))
                 OttieniCartelleDaDB();

@@ -65,12 +65,20 @@ namespace EsLab0._1_Tombola_Sebastianelli_Tomas
             FrmRegistrazione frmRegistrazione = new FrmRegistrazione();
             frmRegistrazione.ShowDialog();
         }
-        #endregion
 
-        private void FrmAccesso_Load(object sender, EventArgs e)
+        private void rbLocale_CheckedChanged(object sender, EventArgs e)
         {
-            ClsCartellaBL _metodiCartella = new ClsCartellaBL(Program._dbManager);
-            _metodiCartella.GeneraCartella(9, 1);
+            if (rbLocale.Checked)
+                // Cambia la connection string
+                Program._nomeConnectionString = "serverLocale";
         }
+
+        private void rbRemoto_CheckedChanged(object sender, EventArgs e)
+        {
+            if (rbRemoto.Checked)
+                // Cambia la connection string
+                Program._nomeConnectionString = "serverRemoto";
+        }
+        #endregion
     }
 }

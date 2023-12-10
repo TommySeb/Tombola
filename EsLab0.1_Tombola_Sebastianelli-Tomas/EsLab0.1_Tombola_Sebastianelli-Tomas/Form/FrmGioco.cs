@@ -36,7 +36,7 @@ namespace EsLab0._1_Tombola_Sebastianelli_Tomas
             int _righe = 0;
 
             int _distanzaBordoSinistro = 10;
-            int _distanzaBordoAlto = 20;
+            int _distanzaBordoAlto = 40;
             int _offsetCartelle = 10;
 
             // Nascondi la FrmHomepage
@@ -73,7 +73,7 @@ namespace EsLab0._1_Tombola_Sebastianelli_Tomas
                     if(i + k <= _cartelleDaGiocare.Count)   // Verifica se le cartelle sono terminate
                     {
                         UcCartella cartella = new UcCartella(Program._cartelle[i + k].Id);
-                        cartella.Location = new Point(_distanzaBordoSinistro + (k - 1) * (cartella.Height + _offsetCartelle), _distanzaBordoAlto + (i - 1) * (cartella.Height + _offsetCartelle));
+                        cartella.Location = new Point(_distanzaBordoSinistro + (k - 1) * (cartella.Width + _offsetCartelle), _distanzaBordoAlto + (i - 1) * (cartella.Height + _offsetCartelle));
                         this.Controls.Add(cartella);
                     }
                 }

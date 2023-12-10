@@ -10,12 +10,12 @@ namespace EsLab0._1_Tombola_Sebastianelli_Tomas
     {
         #region Variabili
         DBManager _dbManager;
-        string _connectionString;
         #endregion
 
         #region Costruttore
         public ClsPartitaBL(DBManager dBManager)
         {
+            // Memorizza il DbManager
             _dbManager = dBManager;
         }
         #endregion
@@ -34,7 +34,10 @@ namespace EsLab0._1_Tombola_Sebastianelli_Tomas
             Program._partite.Clear();
 
             // Query al DB
-            _partite = _dbManager.GetDataTableByQuery("SELECT * FROM partite", null, ref _errore);
+            if(Program._nomeConnectionString == "serverLocale")
+                _partite = _dbManager.GetDataTableByQuery("SELECT * FROM partite", null, ref _errore);
+            else
+                _partite = _dbManager.GetDataTableByQuery("SELECT * FROM st10453_partite", null, ref _errore);
 
             // Creo i vari oggetti di classe partita e li inserisco nella lista se non si sono verificati errori
             if (String.IsNullOrEmpty(_errore))
@@ -85,8 +88,11 @@ namespace EsLab0._1_Tombola_Sebastianelli_Tomas
                 new MySqlConnector.MySqlParameter("@VALORE_TOMBOLA", valoreTombola)
             };
 
-            _righeInserite = Program._dbManager.GetAffectedRows("INSERT INTO partite (nome, prezzo, valore_ambo, valore_terna, valore_quaterna, valore_cinquina, valore_tombola) VALUES (@NOME, @PREZZO, @VALORE_AMBO, @VALORE_TERNA, @VALORE_QUATERNA, @VALORE_CINQUINA, @VALORE_TOMBOLA", _parametriQuery, ref _errore);
-
+            if(Program._nomeConnectionString == "serverLocale")
+                _righeInserite = Program._dbManager.GetAffectedRows("INSERT INTO partite (nome, prezzo, valore_ambo, valore_terna, valore_quaterna, valore_cinquina, valore_tombola) VALUES (@NOME, @PREZZO, @VALORE_AMBO, @VALORE_TERNA, @VALORE_QUATERNA, @VALORE_CINQUINA, @VALORE_TOMBOLA", _parametriQuery, ref _errore);
+            else
+                _righeInserite = Program._dbManager.GetAffectedRows("INSERT INTO st10453_partite (nome, prezzo, valore_ambo, valore_terna, valore_quaterna, valore_cinquina, valore_tombola) VALUES (@NOME, @PREZZO, @VALORE_AMBO, @VALORE_TERNA, @VALORE_QUATERNA, @VALORE_CINQUINA, @VALORE_TOMBOLA", _parametriQuery, ref _errore);
+            
             // In caso di inserimento riuscito apri la FrmBanco
             if (String.IsNullOrEmpty(_errore) && _righeInserite == 1)
                 throw new Exception("Errore durante il tentativo di inserire la partita sul DB: \r\n " + _errore);
