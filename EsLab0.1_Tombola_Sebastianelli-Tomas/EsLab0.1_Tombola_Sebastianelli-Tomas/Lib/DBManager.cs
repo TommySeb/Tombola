@@ -33,8 +33,8 @@ namespace EsLab0._1_Tombola_Sebastianelli_Tomas
         {
             get
             {
-                if (conn == null)
-                    conn = new MySqlConnection(StringaConnessione);
+                // if (conn == null)
+                conn = new MySqlConnection(StringaConnessione);
                 return conn;
             }
         }

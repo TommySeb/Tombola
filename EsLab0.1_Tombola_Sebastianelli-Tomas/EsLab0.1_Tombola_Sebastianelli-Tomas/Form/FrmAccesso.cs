@@ -57,7 +57,7 @@ namespace EsLab0._1_Tombola_Sebastianelli_Tomas
                 this.Cursor = Cursors.Arrow;
 
                 MessageBox.Show("Si è verificato un errore: \r\n" + ex.Message, "Errore", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+             }
         }
 
         private void llRegistrati_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
