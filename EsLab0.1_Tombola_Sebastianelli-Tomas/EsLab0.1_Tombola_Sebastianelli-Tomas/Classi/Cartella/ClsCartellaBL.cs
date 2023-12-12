@@ -243,7 +243,7 @@ namespace EsLab0._1_Tombola_Sebastianelli_Tomas
             if (String.IsNullOrEmpty(_erroreDB))
                 OttieniCartelleDaDB();
             else
-                throw new Exception("Errore nell'inserimento della cartella su DB:\r\n" + _erroreDB);
+                throw new Exception("Errore nell'inserimento della cartella sul DB:\r\n" + _erroreDB);
         }
         #endregion
     }

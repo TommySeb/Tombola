@@ -55,6 +55,14 @@ namespace EsLab0._1_Tombola_Sebastianelli_Tomas
                 // Ottengo i numeri della cartella come array
                 _numeriCartella = _metodiCartella.OttieniNumeriCartella(_idCartella);
 
+                /*
+                    Soluzione 1:
+                    1- Crea una matrice che rappresenta la struttura della cartella
+                    2- Inserisco prima i numeri di un range che compaiono più volte
+                    3- A mano a mano diminuisco
+                    4- Inserisco i numeri della matrice nelle varie caselle, usando come indici i e k
+                */
+
                 // Genera le caselle dei numeri
                 for (int i = 0; i < 10; i++)
                 {
