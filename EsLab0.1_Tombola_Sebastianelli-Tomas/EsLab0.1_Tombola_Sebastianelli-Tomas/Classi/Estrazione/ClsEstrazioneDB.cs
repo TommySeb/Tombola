@@ -41,12 +41,12 @@ namespace EsLab0._1_Tombola_Sebastianelli_Tomas
         {
             get
             {
-                return _id;
+                return _idPartita;
             }
             set
             {
                 if (value >= 0)
-                    _id = value;
+                    _idPartita = value;
                 else
                     throw new Exception("L'ID della partita non può assumere un valore negativo.");
             }

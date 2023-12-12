@@ -99,6 +99,7 @@
             // 
             // nudPrezzo
             // 
+            this.nudPrezzo.DecimalPlaces = 2;
             this.nudPrezzo.Location = new System.Drawing.Point(17, 110);
             this.nudPrezzo.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.nudPrezzo.Maximum = new decimal(new int[] {
@@ -112,6 +113,7 @@
             // 
             // nudValoreAmbo
             // 
+            this.nudValoreAmbo.DecimalPlaces = 2;
             this.nudValoreAmbo.Font = new System.Drawing.Font("Century Gothic", 8.25F);
             this.nudValoreAmbo.Location = new System.Drawing.Point(17, 158);
             this.nudValoreAmbo.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -138,6 +140,7 @@
             // 
             // nudValoreTerna
             // 
+            this.nudValoreTerna.DecimalPlaces = 2;
             this.nudValoreTerna.Font = new System.Drawing.Font("Century Gothic", 8.25F);
             this.nudValoreTerna.Location = new System.Drawing.Point(17, 206);
             this.nudValoreTerna.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -164,6 +167,7 @@
             // 
             // nudValoreQuaterna
             // 
+            this.nudValoreQuaterna.DecimalPlaces = 2;
             this.nudValoreQuaterna.Font = new System.Drawing.Font("Century Gothic", 8.25F);
             this.nudValoreQuaterna.Location = new System.Drawing.Point(17, 254);
             this.nudValoreQuaterna.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -190,6 +194,7 @@
             // 
             // nudValoreCinquina
             // 
+            this.nudValoreCinquina.DecimalPlaces = 2;
             this.nudValoreCinquina.Font = new System.Drawing.Font("Century Gothic", 8.25F);
             this.nudValoreCinquina.Location = new System.Drawing.Point(17, 302);
             this.nudValoreCinquina.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -216,6 +221,7 @@
             // 
             // nudValoreTombola
             // 
+            this.nudValoreTombola.DecimalPlaces = 2;
             this.nudValoreTombola.Font = new System.Drawing.Font("Century Gothic", 8.25F);
             this.nudValoreTombola.Location = new System.Drawing.Point(17, 350);
             this.nudValoreTombola.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -293,7 +299,9 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "FrmDetailsPartita";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Dettagli partita - Tombola";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmDetailsPartita_FormClosing);
             this.Load += new System.EventHandler(this.FrmDetailsPartita_Load);
             ((System.ComponentModel.ISupportInitialize)(this.nudPrezzo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudValoreAmbo)).EndInit();

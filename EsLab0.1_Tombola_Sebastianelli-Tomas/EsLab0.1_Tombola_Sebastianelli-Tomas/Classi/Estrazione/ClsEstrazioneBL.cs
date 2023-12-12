@@ -13,7 +13,7 @@ namespace EsLab0._1_Tombola_Sebastianelli_Tomas
         #endregion
 
         #region Costruttore
-        ClsEstrazioneBL(DBManager dbManager)
+        public ClsEstrazioneBL(DBManager dbManager)
         {
             // Memorizzo il DBManager
             _dbManager = dbManager;

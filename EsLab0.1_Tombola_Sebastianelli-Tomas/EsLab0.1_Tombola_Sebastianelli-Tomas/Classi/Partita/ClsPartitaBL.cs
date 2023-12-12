@@ -71,11 +71,12 @@ namespace EsLab0._1_Tombola_Sebastianelli_Tomas
         /// <param name="valoreQuaterna">Valore in caso di quaterna</param>
         /// <param name="valoreCinquina">Valore in caso di cinquina</param>
         /// <param name="valoreTombola">Valore in caso di tombola</param>
-        public void CreaPartita(string nome, decimal prezzo, decimal valoreAmbo, decimal valoreTerna, decimal valoreQuaterna, decimal valoreCinquina, decimal valoreTombola)
+        public long CreaPartita(string nome, decimal prezzo, decimal valoreAmbo, decimal valoreTerna, decimal valoreQuaterna, decimal valoreCinquina, decimal valoreTombola)
         {
             // Inserimento partita su DB
             string _errore = String.Empty;
             int _righeInserite;
+            long _idGenerato = -1;
 
             MySqlConnector.MySqlParameter[] _parametriQuery =
             {
@@ -89,13 +90,16 @@ namespace EsLab0._1_Tombola_Sebastianelli_Tomas
             };
 
             if(Program._nomeConnectionString == "serverLocale")
-                _righeInserite = Program._dbManager.GetAffectedRows("INSERT INTO partite (nome, prezzo, valore_ambo, valore_terna, valore_quaterna, valore_cinquina, valore_tombola) VALUES (@NOME, @PREZZO, @VALORE_AMBO, @VALORE_TERNA, @VALORE_QUATERNA, @VALORE_CINQUINA, @VALORE_TOMBOLA", _parametriQuery, ref _errore);
+                _righeInserite = Program._dbManager.GetAffectedRowsByNonQuery("INSERT INTO partite (nome, prezzo, valore_ambo, valore_terna, valore_quaterna, valore_cinquina, valore_tombola) VALUES (@NOME, @PREZZO, @VALORE_AMBO, @VALORE_TERNA, @VALORE_QUATERNA, @VALORE_CINQUINA, @VALORE_TOMBOLA", _parametriQuery, out _idGenerato, out _errore);
             else
-                _righeInserite = Program._dbManager.GetAffectedRows("INSERT INTO st10453_partite (nome, prezzo, valore_ambo, valore_terna, valore_quaterna, valore_cinquina, valore_tombola) VALUES (@NOME, @PREZZO, @VALORE_AMBO, @VALORE_TERNA, @VALORE_QUATERNA, @VALORE_CINQUINA, @VALORE_TOMBOLA", _parametriQuery, ref _errore);
+                _righeInserite = Program._dbManager.GetAffectedRowsByNonQuery("INSERT INTO st10453_partite (nome, prezzo, valore_ambo, valore_terna, valore_quaterna, valore_cinquina, valore_tombola) VALUES (@NOME, @PREZZO, @VALORE_AMBO, @VALORE_TERNA, @VALORE_QUATERNA, @VALORE_CINQUINA, @VALORE_TOMBOLA", _parametriQuery, out _idGenerato, out _errore);
             
-            // In caso di inserimento riuscito apri la FrmBanco
+            // In caso di errore restituiscilo
             if (String.IsNullOrEmpty(_errore) && _righeInserite == 1)
                 throw new Exception("Errore durante il tentativo di inserire la partita sul DB: \r\n " + _errore);
+
+            // Ritorna l'ID della partita generata
+            return _idGenerato;
         }
 
         /// <summary>

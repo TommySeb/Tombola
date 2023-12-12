@@ -220,6 +220,50 @@ namespace EsLab0._1_Tombola_Sebastianelli_Tomas
             return righeInserite;
 
         }
+        
+        /// <summary>
+        /// INSERT - UPDATE - DELETE parametrici che restituiscono numero di righe interessate
+        /// </summary>
+        /// <param name="query">INSERT - UPDATE - DELETE</param>
+        /// <param name="parametri"></param>
+        /// <param name="lastId">-1 in caso di errore, 0 negli altri casi</param>
+        /// <param name="errore">Messaggio di errore</param>
+        /// <returns>righeInteressate</returns>
+        public int GetAffectedRowsByNonQuery(string query, MySqlParameter[] parametri, out long lastId, out string errore)
+        {
+            int righeInteressate = 0;
+            errore = string.Empty;
+            lastId = -1;
+
+            try
+            {
+                // Apertura connessione
+                Connessione.Open();
+
+                // Creo l'oggetto command
+                MySqlCommand cmd = new MySqlCommand(query, Connessione);
+
+                if (parametri != null)
+                    cmd.Parameters.AddRange(parametri);
+
+                // Eseguo il comando
+                righeInteressate = cmd.ExecuteNonQuery();
+
+                lastId = cmd.LastInsertedId; // Restituisce zero su UPDATE e DELETE
+            }
+            catch(Exception ex)
+            {
+                errore = ex.Message;
+            }
+            finally
+            {
+                // Chiusura connessione
+                if (Connessione.State == ConnectionState.Open)
+                    Connessione.Close();
+            }
+
+            return righeInteressate;
+        }
         #endregion
 
     }

@@ -13,13 +13,13 @@ namespace EsLab0._1_Tombola_Sebastianelli_Tomas
     public partial class FrmGioco : Form
     {
         #region Variabili
-        int _idPartita;
+        long _idPartita;
         ClsCartellaBL _metodiCartella = new ClsCartellaBL(Program._dbManager);
         List<int> _cartelleDaGiocare;
         #endregion
 
         #region Costruttore
-        public FrmGioco(int idPartita)
+        public FrmGioco(long idPartita)
         {
             InitializeComponent();
 
@@ -78,6 +78,17 @@ namespace EsLab0._1_Tombola_Sebastianelli_Tomas
                     }
                 }
             }
+        }
+
+        private void FrmGioco_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            // Conferma di uscita dall'app
+            DialogResult dr = MessageBox.Show("Sei sicuro di voler uscire?", "Conferma uscita", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (dr == DialogResult.Yes)
+                Application.Exit();
+            else
+                e.Cancel = true;
         }
         #endregion
     }

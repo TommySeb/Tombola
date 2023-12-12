@@ -14,11 +14,11 @@ namespace EsLab0._1_Tombola_Sebastianelli_Tomas
     {
         #region Variabili
         ClsPartitaBL _metodiPartita = new ClsPartitaBL(Program._dbManager);
-        int _idPartita;
+        long _idPartita;
         #endregion
 
         #region Costruttore
-        public FrmDetailsPartita(int idPartita)
+        public FrmDetailsPartita(long idPartita)
         {
             InitializeComponent();
 
@@ -30,6 +30,9 @@ namespace EsLab0._1_Tombola_Sebastianelli_Tomas
         #region Eventi
         private void FrmDetailsPartita_Load(object sender, EventArgs e)
         {
+            // Nascondi la homepage
+            this.Owner.Hide();
+
             // Modifica dei controlli in base alla modalità di lavoro
             if (_idPartita == -1)
             {
@@ -39,6 +42,10 @@ namespace EsLab0._1_Tombola_Sebastianelli_Tomas
             }
             else
             {
+                // Dichiarazione variabili necessarie
+                int _posizionePartitaSuLista;
+
+                // Rendo tutti i controlli grafici ReadOnly
                 tbNome.ReadOnly = true;
                 nudPrezzo.ReadOnly = true;
                 nudValoreAmbo.ReadOnly = true;
@@ -46,6 +53,18 @@ namespace EsLab0._1_Tombola_Sebastianelli_Tomas
                 nudValoreQuaterna.ReadOnly = true;
                 nudValoreCinquina.ReadOnly = true;
                 nudValoreTombola.ReadOnly = true;
+
+                // Ottengo la posizione della partita sulla lista
+                _posizionePartitaSuLista = _metodiPartita.CercaPartitaDaID(_idPartita);
+
+                // Carico le informazioni della partita sui vari controlli grafici
+                tbNome.Text = Program._partite[_posizionePartitaSuLista].Nome;
+                nudPrezzo.Value = Program._partite[_posizionePartitaSuLista].Prezzo;
+                nudValoreAmbo.Value = Program._partite[_posizionePartitaSuLista].ValoreAmbo;
+                nudValoreTerna.Value = Program._partite[_posizionePartitaSuLista].ValoreTerna;
+                nudValoreQuaterna.Value = Program._partite[_posizionePartitaSuLista].ValoreQuaterna;
+                nudValoreCinquina.Value = Program._partite[_posizionePartitaSuLista].ValoreCinquina;
+                nudValoreTombola.Value = Program._partite[_posizionePartitaSuLista].ValoreTombola;
             }
         }
 
@@ -69,12 +88,17 @@ namespace EsLab0._1_Tombola_Sebastianelli_Tomas
                     // Effettuo l'inserimento sul DB
                     try
                     {
-                        _metodiPartita.CreaPartita(tbNome.Text, nudPrezzo.Value, nudValoreAmbo.Value, nudValoreTerna.Value, nudValoreQuaterna.Value, nudValoreCinquina.Value, nudValoreTombola.Value);
+                        long _idPartitaGenerato = _metodiPartita.CreaPartita(tbNome.Text, nudPrezzo.Value, nudValoreAmbo.Value, nudValoreTerna.Value, nudValoreQuaterna.Value, nudValoreCinquina.Value, nudValoreTombola.Value);
 
                         MessageBox.Show("Inserimento della partita effettuato con successo", "Successo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        // TODO: Apri il banco della partita
-                        // Come posso far sì che, una volta aver inserito un record, mi viene ritornato indietro l'ID del record appena inserito?
-                        this.Close();
+
+                        // Nascondi la Form details della partita
+                        this.Owner.Hide();
+
+                        // Apri il banco della partita
+                        FrmBanco frmBanco = new FrmBanco(_idPartitaGenerato);
+                        frmBanco.Owner = this;
+                        frmBanco.ShowDialog();
                     }
                     catch (Exception ex)
                     {
@@ -86,8 +110,24 @@ namespace EsLab0._1_Tombola_Sebastianelli_Tomas
             }
             else
             {
-                // TODO: Istruzioni per partecipare alla partita
+                // Apri la Form di gioco
+                FrmGioco frmGioco = new FrmGioco(_idPartita);
+                frmGioco.Owner = this;
+                frmGioco.ShowDialog();
             }
+        }
+
+        private void FrmDetailsPartita_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            /*
+            Scopo: Aprire la FrmHomepage se si chiude la FrmDetails
+            Errore ottenuto: System.StackOverflowException
+
+            if(this.Owner != null)
+                this.Owner.Show();
+            */
+
+            this.Close();
         }
         #endregion
     }

@@ -86,14 +86,14 @@ namespace EsLab0._1_Tombola_Sebastianelli_Tomas
         #region Eventi
         private void FrmHomepage_Load(object sender, EventArgs e)
         {
-            // Nascondi la Form di accesso
-            this.Owner.Hide();
-
             // Carica il nome utente
             lblUtente.Text = "Bentornato, " + Program._giocatoreLoggato.Nome;
 
             // Ottenimento partite ed inserimento su ListView
             AggiornaLvPartite();
+
+            // Nascondi la Form di accesso
+            this.Owner.Hide();
         }
 
         private void lvPartite_ColumnWidthChanging(object sender, ColumnWidthChangingEventArgs e)
@@ -158,17 +158,18 @@ namespace EsLab0._1_Tombola_Sebastianelli_Tomas
         {
             // Apri la form di creazione della partita
             FrmDetailsPartita frmDetailsPartita = new FrmDetailsPartita(-1);
+            frmDetailsPartita.Owner = this;
             frmDetailsPartita.ShowDialog();
         }
 
         private void btGioca_Click(object sender, EventArgs e)
         {
-            // Apri la form di gioco se è stata selezionata una partita
+            // Apri i dettagli della partita selezionata
             if (lvPartite.SelectedItems.Count == 1)
             {
-                FrmGioco frmGioco = new FrmGioco(Convert.ToInt32(lvPartite.SelectedItems[0].Tag));
-                frmGioco.Owner = this;
-                frmGioco.ShowDialog();
+                FrmDetailsPartita frmDetailsPartita = new FrmDetailsPartita(Convert.ToInt64(lvPartite.SelectedItems[0].Tag));
+                frmDetailsPartita.Owner = this;
+                frmDetailsPartita.ShowDialog();
             }
             else
                 MessageBox.Show("Nessuna partita selezionata, selezionarne una per continuare.", "Errore", MessageBoxButtons.OK, MessageBoxIcon.Error);

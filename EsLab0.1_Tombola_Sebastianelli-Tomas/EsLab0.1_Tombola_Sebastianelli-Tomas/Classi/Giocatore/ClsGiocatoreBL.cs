@@ -12,7 +12,6 @@ namespace EsLab0._1_Tombola_Sebastianelli_Tomas
     {
         #region Variabili
         DBManager _dbManager;
-        string _connectionString;
         #endregion
 
         #region Costruttore

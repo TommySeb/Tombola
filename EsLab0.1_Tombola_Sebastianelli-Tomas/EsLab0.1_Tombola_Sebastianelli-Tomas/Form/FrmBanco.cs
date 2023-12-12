@@ -13,12 +13,13 @@ namespace EsLab0._1_Tombola_Sebastianelli_Tomas
     public partial class FrmBanco : Form
     {
         #region Variabili
-        int _idPartita;
+        long _idPartita;
         ClsPartitaBL _metodiPartita = new ClsPartitaBL(Program._dbManager);
+        ClsEstrazioneBL _metodiEstrazione = new ClsEstrazioneBL(Program._dbManager);
         #endregion
 
         #region Costruttore
-        public FrmBanco(int idPartita)
+        public FrmBanco(long idPartita)
         {
             InitializeComponent();
 
@@ -30,9 +31,6 @@ namespace EsLab0._1_Tombola_Sebastianelli_Tomas
         #region Eventi
         private void FrmBanco_Load(object sender, EventArgs e)
         {
-            // TMP
-            _metodiPartita.OttieniPartiteDaDB();
-
             // Dichiarazione variabili necessarie
             int _indicePartitaSuLista;
             int x = 17;
@@ -70,6 +68,29 @@ namespace EsLab0._1_Tombola_Sebastianelli_Tomas
                 MessageBox.Show("Errore: La partita specificata non esiste.");
                 this.Close();
             }
+        }
+
+        private void btEstrai_Click(object sender, EventArgs e)
+        {
+            // Dichiarazione variabili necessarie
+            int _numeroEstratto;
+
+            // Effettua un'estrazione
+            _numeroEstratto = _metodiEstrazione.EstraiNumero(_idPartita);
+
+            // Mostra il numero estratto
+            MessageBox.Show(_numeroEstratto.ToString(), "Numero estratto", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void FrmBanco_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            // Conferma di uscita dall'app
+            DialogResult dr = MessageBox.Show("Sei sicuro di voler uscire?", "Conferma uscita", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (dr == DialogResult.Yes)
+                Application.Exit();
+            else
+                e.Cancel = true;
         }
         #endregion
     }
