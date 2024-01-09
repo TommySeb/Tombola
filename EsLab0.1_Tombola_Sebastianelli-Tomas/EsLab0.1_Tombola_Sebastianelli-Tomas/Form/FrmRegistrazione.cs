@@ -50,9 +50,8 @@ namespace EsLab0._1_Tombola_Sebastianelli_Tomas
                     MessageBox.Show("Utente registrato con successo.", "Conferma di registrazione", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     this.Close();
                 }
-                    
-                
-            }catch(Exception ex)
+            }
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.ToString(), "Errore", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }

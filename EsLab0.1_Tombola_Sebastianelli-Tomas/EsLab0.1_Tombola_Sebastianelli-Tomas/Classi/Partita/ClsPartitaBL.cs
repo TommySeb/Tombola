@@ -89,10 +89,10 @@ namespace EsLab0._1_Tombola_Sebastianelli_Tomas
                 new MySqlConnector.MySqlParameter("@VALORE_TOMBOLA", valoreTombola)
             };
 
-            if(Program._nomeConnectionString == "serverLocale")
-                _righeInserite = Program._dbManager.GetAffectedRowsByNonQuery("INSERT INTO partite (nome, prezzo, valore_ambo, valore_terna, valore_quaterna, valore_cinquina, valore_tombola) VALUES (@NOME, @PREZZO, @VALORE_AMBO, @VALORE_TERNA, @VALORE_QUATERNA, @VALORE_CINQUINA, @VALORE_TOMBOLA", _parametriQuery, out _idGenerato, out _errore);
+            if (Program._nomeConnectionString == "serverLocale")
+                _righeInserite = Program._dbManager.GetAffectedRowsByNonQuery("INSERT INTO partite (nome, prezzo, valore_ambo, valore_terna, valore_quaterna, valore_cinquina, valore_tombola) VALUES (@NOME, @PREZZO, @VALORE_AMBO, @VALORE_TERNA, @VALORE_QUATERNA, @VALORE_CINQUINA, @VALORE_TOMBOLA)", _parametriQuery, ref _idGenerato, ref _errore);
             else
-                _righeInserite = Program._dbManager.GetAffectedRowsByNonQuery("INSERT INTO st10453_partite (nome, prezzo, valore_ambo, valore_terna, valore_quaterna, valore_cinquina, valore_tombola) VALUES (@NOME, @PREZZO, @VALORE_AMBO, @VALORE_TERNA, @VALORE_QUATERNA, @VALORE_CINQUINA, @VALORE_TOMBOLA", _parametriQuery, out _idGenerato, out _errore);
+                _righeInserite = Program._dbManager.GetAffectedRowsByNonQuery("INSERT INTO st10453_partite (nome, prezzo, valore_ambo, valore_terna, valore_quaterna, valore_cinquina, valore_tombola) VALUES (@NOME, @PREZZO, @VALORE_AMBO, @VALORE_TERNA, @VALORE_QUATERNA, @VALORE_CINQUINA, @VALORE_TOMBOLA)", _parametriQuery, ref _idGenerato, ref _errore);
             
             // In caso di errore restituiscilo
             if (String.IsNullOrEmpty(_errore) && _righeInserite == 1)

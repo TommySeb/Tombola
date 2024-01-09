@@ -41,7 +41,8 @@ namespace EsLab0._1_Tombola_Sebastianelli_Tomas
         #endregion
 
         #region COSTRUTTORI
-        public DBManager() { }
+        public DBManager() {
+        }
         public DBManager(string database, string server, string username, string password, string port)
         {
             if (String.IsNullOrWhiteSpace(database) ||
@@ -229,7 +230,7 @@ namespace EsLab0._1_Tombola_Sebastianelli_Tomas
         /// <param name="lastId">-1 in caso di errore, 0 negli altri casi</param>
         /// <param name="errore">Messaggio di errore</param>
         /// <returns>righeInteressate</returns>
-        public int GetAffectedRowsByNonQuery(string query, MySqlParameter[] parametri, out long lastId, out string errore)
+        public int GetAffectedRowsByNonQuery(string query, MySqlParameter[] parametri, ref long lastId, ref string errore)
         {
             int righeInteressate = 0;
             errore = string.Empty;
@@ -239,6 +240,8 @@ namespace EsLab0._1_Tombola_Sebastianelli_Tomas
             {
                 // Apertura connessione
                 Connessione.Open();
+
+                string tmp = Connessione.State.ToString();
 
                 // Creo l'oggetto command
                 MySqlCommand cmd = new MySqlCommand(query, Connessione);

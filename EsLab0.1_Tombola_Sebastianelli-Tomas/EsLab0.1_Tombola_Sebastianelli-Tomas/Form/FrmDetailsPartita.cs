@@ -90,15 +90,20 @@ namespace EsLab0._1_Tombola_Sebastianelli_Tomas
                     {
                         long _idPartitaGenerato = _metodiPartita.CreaPartita(tbNome.Text, nudPrezzo.Value, nudValoreAmbo.Value, nudValoreTerna.Value, nudValoreQuaterna.Value, nudValoreCinquina.Value, nudValoreTombola.Value);
 
-                        MessageBox.Show("Inserimento della partita effettuato con successo", "Successo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        if(_idPartitaGenerato != -1)
+                        {
+                            MessageBox.Show("Inserimento della partita effettuato con successo", "Successo", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                        // Nascondi la Form details della partita
-                        this.Owner.Hide();
+                            // Nascondi la Form details della partita
+                            this.Owner.Hide();
 
-                        // Apri il banco della partita
-                        FrmBanco frmBanco = new FrmBanco(_idPartitaGenerato);
-                        frmBanco.Owner = this;
-                        frmBanco.ShowDialog();
+                            // Apri il banco della partita
+                            FrmBanco frmBanco = new FrmBanco(_idPartitaGenerato);
+                            frmBanco.Owner = this;
+                            frmBanco.ShowDialog();
+                        }
+                        else
+                            MessageBox.Show("Si è verificato un errore nel tentativo di inserire la partita.", "Errore", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                     catch (Exception ex)
                     {

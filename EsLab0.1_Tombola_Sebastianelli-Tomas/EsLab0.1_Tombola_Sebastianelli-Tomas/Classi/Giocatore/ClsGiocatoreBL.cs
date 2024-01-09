@@ -108,7 +108,8 @@ namespace EsLab0._1_Tombola_Sebastianelli_Tomas
                     new MySqlParameter("@password", giocatore.Password)
                 };
 
-                esito = _dbManager.GetAffectedRows(sql, parametri, ref errore);
+                string _errore = String.Empty;
+                esito = _dbManager.GetAffectedRows(sql, parametri, ref _errore);
             }
             catch (Exception ex)
             {
